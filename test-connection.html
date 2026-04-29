@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Supabase Connection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white p-8 rounded-2xl shadow-lg max-w-md w-full">
+        <h1 class="text-2xl font-bold text-gray-800 mb-4">Test Koneksi Supabase</h1>
+        <div id="status" class="text-center">
+            <p class="text-gray-600">Menghubungkan ke database...</p>
+        </div>
+        <div id="data" class="mt-4 hidden">
+            <h2 class="font-semibold text-gray-700 mb-2">Data Profile:</h2>
+            <pre id="output" class="bg-gray-100 p-4 rounded-lg text-sm overflow-auto max-h-60"></pre>
+        </div>
+    </div>
+
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+        
+        const SUPABASE_URL = 'https://lyigktppyznswnynsjvl.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_A-A8wsurGSU34Bs8SArsmg_Yl2KjExD';
+        
+        const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+        const statusDiv = document.getElementById('status');
+        const dataDiv = document.getElementById('data');
+        const outputPre = document.getElementById('output');
+        
+        async function testConnection() {
+            try {
+                // Test query
+                const { data, error } = await supabase
+                    .from('profile')
+                    .select('*');
+                
+                if (error) {
+                    statusDiv.innerHTML = `
+                        <div class="text-red-600">
+                            <i class="fas fa-times-circle text-4xl mb-2"></i>
+                            <p class="font-semibold">Error!</p>
+                            <p class="text-sm">${error.message}</p>
+                        </div>
+                    `;
+                    console.error('Error:', error);
+                    return;
+                }
+                
+                if (data && data.length > 0) {
+                    statusDiv.innerHTML = `
+                        <div class="text-green-600">
+                            <i class="fas fa-check-circle text-4xl mb-2"></i>
+                            <p class="font-semibold">Berhasil terhubung!</p>
+                            <p class="text-sm">${data.length} data ditemukan</p>
+                        </div>
+                    `;
+                    dataDiv.classList.remove('hidden');
+                    outputPre.textContent = JSON.stringify(data[0], null, 2);
+                } else {
+                    statusDiv.innerHTML = `
+                        <div class="text-yellow-600">
+                            <i class="fas fa-exclamation-circle text-4xl mb-2"></i>
+                            <p class="font-semibold">Terhubung tapi data kosong!</p>
+                            <p class="text-sm">Silakan jalankan SQL schema dulu</p>
+                        </div>
+                    `;
+                }
+                
+            } catch (err) {
+                statusDiv.innerHTML = `
+                    <div class="text-red-600">
+                        <i class="fas fa-times-circle text-4xl mb-2"></i>
+                        <p class="font-semibold">Connection Error!</p>
+                        <p class="text-sm">${err.message}</p>
+                    </div>
+                `;
+                console.error('Connection error:', err);
+            }
+        }
+        
+        // Jalankan test
+        testConnection();
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</body>
+</html>
