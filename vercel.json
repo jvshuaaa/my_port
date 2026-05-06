@@ -1,18 +1,8 @@
 {
   "version": 2,
   "name": "portfolio-cv",
-  "builds": [
-    {
-      "src": "index.html",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
-    }
-  ],
+  "cleanUrls": true,
+  "framework": null,
   "env": {
     "SUPABASE_URL": "https://lyigktppyznswnynsjvl.supabase.co",
     "SUPABASE_KEY": "sb_publishable_A-A8wsurGSU34Bs8SArsmg_Yl2KjExD"
