@@ -210,8 +210,8 @@ INSERT INTO experience (posisi, perusahaan, lokasi, periode_mulai, periode_seles
 
 -- Education
 INSERT INTO education (gelar, institusi, jurusan, periode_mulai, periode_selesai, urutan) VALUES
-('Sarjana Komputer (S.Kom)', 'Universitas Indraprasta PGRI', 'Teknik Informatika', '2021-08-01', '2025-08-01', 1),
-('SMA', 'SMAN 1 Bungursari', 'IPS', '2016-07-01', '2019-06-01', 2);
+('Sarjana Komputer (S.Kom)', 'Universitas Indraprasta PGRI', 'Teknik Informatika', '2021-08-01', '2025-08-01', 1);
+
 
 -- Certifications
 INSERT INTO certifications (nama, lembaga, tahun, warna) VALUES
@@ -251,10 +251,14 @@ INSERT INTO skills (kategori, nama, level, urutan) VALUES
 
 -- Organization
 INSERT INTO organization (nama, institusi, jabatan, periode_mulai, periode_selesai, deskripsi, bullets, icon, urutan) VALUES
-('Persekutuan Mahasiswa Kristen (PMK)', 'Universitas Indraprasta PGRI', 'Wakil Kominfo', '2021-08-01', '2025-08-01',
+('Persekutuan Mahasiswa Kristen (PMK)', 'Universitas Indraprasta PGRI', 'Anggota', '2021-08-01', '2025-08-01',
  'Organisasi keagamaan kampus',
- ARRAY['Menghadiri rapat PMK untuk membahas program kerja dan kegiatan organisasi', 'Berpartisipasi dalam kegiatan persekutuan doa dan ibadah bersama', 'Bekerjasama dengan baik dengan anggota PMK lainnya untuk mencapai tujuan bersama', 'Mengatur dan membantu ketua dalam menjalani tugas', 'Membuat poster untuk kegiatan organisasi', 'Mengelola live streaming dan upload konten di sosial media'],
- 'fa-church', 1);
+ ARRAY['Menghadiri rapat PMK untuk membahas program kerja dan kegiatan organisasi', 'Berpartisipasi dalam kegiatan persekutuan doa dan ibadah bersama', 'Bekerjasama dengan baik dengan anggota PMK lainnya untuk mencapai tujuan bersama'],
+ 'fa-church', 1),
+('Public Campus Ministry', 'Universitas Indraprasta PGRI', 'Wakil Kominfo', '2021-08-01', '2025-08-01',
+ 'Organisasi pelayanan mahasiswa',
+ ARRAY['Mengatur dan membantu ketua dalam menjalani tugas', 'Membuat poster untuk kegiatan organisasi', 'Mengelola live streaming dan upload konten di sosial media'],
+ 'fa-users', 2);
 
 -- Projects
 INSERT INTO projects (judul, deskripsi, teknologi, urutan) VALUES

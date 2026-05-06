@@ -375,69 +375,81 @@ async function renderOrganization() {
     const orgs = await getOrganization();
     if (!orgs || orgs.length === 0) return;
 
+    // Deduplicate
+    const uniqueOrgs = [];
+    const seenOrgs = new Set();
+    orgs.forEach(org => {
+        const key = `${org.nama}-${org.jabatan}`;
+        if (!seenOrgs.has(key)) {
+            seenOrgs.add(key);
+            uniqueOrgs.push(org);
+        }
+    });
+
     const container = document.querySelector('#organization .max-w-4xl');
     if (!container) return;
 
-    const org = orgs[0]; // Ambil yang pertama
-    const bullets = org.bullets ? org.bullets.map(bullet => `<li>${bullet}</li>`).join('') : '';
-    
-    // Split bullets untuk anggota dan wakil kominfo
-    const half = Math.ceil(org.bullets.length / 2);
-    const anggotaBullets = org.bullets.slice(0, half);
-    const kominfoBullets = org.bullets.slice(half);
+    const html = uniqueOrgs.map((org, index) => {
+        // Split bullets untuk dua kolom jika jumlahnya banyak
+        const bullets = org.bullets || [];
+        const half = Math.ceil(bullets.length / 2);
+        const col1 = bullets.slice(0, half);
+        const col2 = bullets.slice(half);
 
-    container.innerHTML = `
-        <div class="glass-card p-10 rounded-[3rem]" data-aos="zoom-in">
-            <div class="flex flex-col md:flex-row items-start gap-8">
-                <div class="w-20 h-20 bg-primary/10 flex items-center justify-center rounded-[2rem] text-primary shrink-0">
-                    <i class="fas ${org.icon || 'fa-users'} text-3xl"></i>
-                </div>
-                <div class="flex-1">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-1">${org.nama}</h3>
-                            <p class="text-primary font-bold text-lg">${org.institusi}</p>
-                        </div>
-                        <span class="px-4 py-2 bg-gray-100 rounded-full text-sm font-bold text-gray-500 w-fit">
-                            ${formatDate(org.periode_mulai)} - ${formatDate(org.periode_selesai)}
-                        </span>
+        return `
+            <div class="glass-card p-10 rounded-[3rem] mb-10" data-aos="zoom-in" data-aos-delay="${index * 100}">
+                <div class="flex flex-col md:flex-row items-start gap-8">
+                    <div class="w-20 h-20 bg-primary/10 flex items-center justify-center rounded-[2rem] text-primary shrink-0">
+                        <i class="fas ${org.icon || 'fa-users'} text-3xl"></i>
                     </div>
-
-                    <div class="grid md:grid-cols-2 gap-10">
-                        <div class="space-y-4">
-                            <div class="flex items-center gap-3 text-gray-900 font-bold mb-4">
-                                <span class="w-8 h-1 bg-primary rounded-full"></span> Anggota
+                    <div class="flex-1 w-full">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-1">${org.nama}</h3>
+                                <p class="text-primary font-bold text-lg">${org.institusi || ''}</p>
                             </div>
-                            <ul class="space-y-3">
-                                ${anggotaBullets.map(b => `
-                                    <li class="flex items-start gap-3 text-gray-500">
-                                        <i class="fas fa-check text-primary text-xs mt-1.5"></i>
-                                        <span>${b}</span>
-                                    </li>
-                                `).join('')}
-                            </ul>
+                            <span class="px-4 py-2 bg-gray-100 rounded-full text-sm font-bold text-gray-500 w-fit">
+                                ${formatDate(org.periode_mulai)} - ${formatDate(org.periode_selesai)}
+                            </span>
                         </div>
 
-                        <div class="space-y-4">
-                            <div class="flex items-center gap-3 text-gray-900 font-bold mb-4">
-                                <span class="w-8 h-1 bg-secondary rounded-full"></span> ${org.jabatan}
+                        <div class="grid md:grid-cols-2 gap-10">
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-3 text-gray-900 font-bold mb-4">
+                                    <span class="w-8 h-1 bg-primary rounded-full"></span> Tugas & Kontribusi
+                                </div>
+                                <ul class="space-y-3">
+                                    ${col1.map(b => `
+                                        <li class="flex items-start gap-3 text-gray-500">
+                                            <i class="fas fa-check text-primary text-xs mt-1.5"></i>
+                                            <span>${b}</span>
+                                        </li>
+                                    `).join('')}
+                                </ul>
                             </div>
-                            <ul class="space-y-3">
-                                ${kominfoBullets.map(b => `
-                                    <li class="flex items-start gap-3 text-gray-500">
-                                        <i class="fas fa-star text-secondary text-xs mt-1.5"></i>
-                                        <span>${b}</span>
-                                    </li>
-                                `).join('')}
-                            </ul>
+
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-3 text-gray-900 font-bold mb-4">
+                                    <span class="w-8 h-1 bg-secondary rounded-full"></span> ${org.jabatan}
+                                </div>
+                                <ul class="space-y-3">
+                                    ${col2.map(b => `
+                                        <li class="flex items-start gap-3 text-gray-500">
+                                            <i class="fas fa-star text-secondary text-xs mt-1.5"></i>
+                                            <span>${b}</span>
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    `;
+        `;
+    }).join('');
 
-    console.log('✅ Organization rendered');
+    container.innerHTML = html;
+    console.log('✅ Organizations rendered');
 }
 
 // 7. RENDER PROJECTS
