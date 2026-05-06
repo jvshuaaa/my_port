@@ -1,5 +1,5 @@
 // supabase.js
-import { createClient } from '@supabase/supabase-js'
+import { createClient } from 'https://esm.sh/@supabase/supabase-js'
 
 // Support env variables untuk Vercel, fallback ke hardcoded untuk local
 const SUPABASE_URL = import.meta.env?.VITE_SUPABASE_URL || 

@@ -3,16 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Joshua Setiawan Banjarnahor| Information Technology at Direktorat Jenderal Pemasyarakatan</title>
+    <title>Portfolio - Joshua Setiawan Banjarnahor | IT Specialist</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script type="module" src="api.js"></script>
     <script type="module" src="app.js"></script>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
+                    colors: {
+                        primary: '#4F46E5', // Indigo
+                        secondary: '#0EA5E9', // Sky
+                        accent: '#F43F5E', // Rose
+                    },
                     backdropBlur: {
                         xs: '2px',
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    },
+                    willChange: {
+                        'transform': 'transform',
                     }
                 }
             }
@@ -20,46 +47,70 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
         
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.5);
+        }
+
         * {
-            scroll-behavior: auto;
+            scroll-behavior: smooth;
         }
         
         body {
-            font-family: 'Inter', sans-serif;
-            background: #f3f2ef;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #fdfdfd;
             overflow-x: hidden;
-            color: #1d1d1d;
+            color: #1a1a1a;
+            position: relative;
+        }
+
+        /* Mesh Background */
+        .mesh-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-color: #fdfdfd;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(253,16%,95%,1) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(225,39%,95%,1) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(339,49%,95%,1) 0, transparent 50%);
+            opacity: 0.8;
         }
         
         .glass {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+        }
+        
+        .glass-card {
             background: #ffffff;
-            border: 1px solid #e0e0e0;
-            box-shadow: 0 0 0 1px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            border-color: rgba(79, 70, 229, 0.2);
         }
         
         .gradient-text {
-            color: #0a66c2;
-            background: none;
-            -webkit-text-fill-color: #0a66c2;
+            background: linear-gradient(135deg, #4F46E5 0%, #0EA5E9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         h1, h2, h3, h4, h5, h6 {
-            font-family: 'Space Grotesk', sans-serif;
-        }
-        
-        /* Skill tag styles */
-        .skill-tag {
-            background: #eef3f8;
-            border: none;
-            color: #0a66c2;
-        }
-        
-        /* Icon container */
-        .icon-box {
-            background: #eef3f8;
-            border: none;
+            font-family: 'Outfit', sans-serif;
         }
         
         .section-title::after {
@@ -68,126 +119,103 @@
             bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
+            width: 40px;
             height: 4px;
-            background: #0a66c2;
-            border-radius: 2px;
-        }
-        
-        /* LinkedIn brand colors */
-        .linkedin-blue { color: #0a66c2; }
-        .text-dark { color: #1d1d1d; }
-        .text-muted { color: #666666; }
-        .bg-linkedin { background-color: #0a66c2; }
-
-        /* Nav icon transitions */
-        nav a {
-            transition: all 0.2s ease;
+            background: linear-gradient(90deg, #4F46E5, #0EA5E9);
+            border-radius: 10px;
         }
 
-        nav a:active {
-            transform: scale(0.9);
+        /* Nav Floating */
+        .nav-floating {
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: fit-content;
+            border-radius: 100px;
+            padding: 8px 24px;
         }
 
-        nav a:hover i {
-            transform: translateY(-2px);
+        .active-nav {
+            color: #4F46E5 !important;
+            background: rgba(79, 70, 229, 0.1);
+            border-radius: 100px;
         }
 
-        nav a i {
-            transition: transform 0.2s ease, color 0.2s ease;
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-
-        nav a.active {
-            color: #0a66c2;
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
         }
-
-        nav a.active i {
-            transform: scale(1.1);
+        ::-webkit-scrollbar-thumb {
+            background: #c7c7c7;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4F46E5;
         }
     </style>
 </head>
 <body class="overflow-x-hidden">
+    <!-- Mesh Background -->
+    <div class="mesh-bg"></div>
+    
+    <!-- Decorative Blobs -->
+    <div class="fixed top-0 -left-4 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply opacity-10 animate-blob [will-change:transform]"></div>
+    <div class="fixed top-0 -right-4 w-72 h-72 bg-yellow-200 rounded-full mix-blend-multiply opacity-10 animate-blob animation-delay-2000 [will-change:transform]"></div>
+    <div class="fixed -bottom-8 left-20 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply opacity-10 animate-blob animation-delay-4000 [will-change:transform]"></div>
     <!-- NAVIGATION BAR - Desktop: Top, Mobile: Left Side -->
-    <!-- Desktop Navbar (hidden on mobile) -->
-    <nav class="fixed top-0 left-0 right-0 glass z-50 py-4 px-6 hidden md:block">
-        <div class="container mx-auto flex items-center justify-between">
-            <a href="#" class="text-2xl font-black text-blue-600">Portfolio</a>
-            <div class="flex items-center gap-8">
-                <a href="#" class="flex flex-col items-center gap-1 text-gray-600 hover:text-blue-600">
-                    <i class="fas fa-home text-xl"></i>
-                    <span class="text-xs font-medium">Home</span>
-                </a>
-                <a href="#about" class="flex flex-col items-center gap-1 text-gray-600 hover:text-blue-600">
-                    <i class="fas fa-user text-xl"></i>
-                    <span class="text-xs font-medium">Profile</span>
-                </a>
-                <a href="#experience" class="flex flex-col items-center gap-1 text-gray-600 hover:text-blue-600">
-                    <i class="fas fa-briefcase text-xl"></i>
-                    <span class="text-xs font-medium">Experience</span>
-                </a>
-                <a href="#skills" class="flex flex-col items-center gap-1 text-gray-600 hover:text-blue-600">
-                    <i class="fas fa-tools text-xl"></i>
-                    <span class="text-xs font-medium">Skills</span>
-                </a>
-                <a href="#projects" class="flex flex-col items-center gap-1 text-gray-600 hover:text-blue-600">
-                    <i class="fas fa-project-diagram text-xl"></i>
-                    <span class="text-xs font-medium">Projects</span>
-                </a>
-                <a href="#contact" class="flex flex-col items-center gap-1 text-gray-600 hover:text-blue-600">
-                    <i class="fas fa-envelope text-xl"></i>
-                    <span class="text-xs font-medium">Contact</span>
-                </a>
-            </div>
+    <!-- Desktop Navbar -->
+    <nav class="fixed nav-floating glass z-50 hidden md:flex items-center justify-center">
+        <div class="flex items-center gap-1">
+            <a href="#" class="px-5 py-2 text-sm font-bold text-gray-600 hover:text-primary transition-all rounded-full active-nav">Home</a>
+            <a href="#about" class="px-5 py-2 text-sm font-bold text-gray-600 hover:text-primary transition-all rounded-full">Profile</a>
+            <a href="#experience" class="px-5 py-2 text-sm font-bold text-gray-600 hover:text-primary transition-all rounded-full">Experience</a>
+            <a href="#skills" class="px-5 py-2 text-sm font-bold text-gray-600 hover:text-primary transition-all rounded-full">Skills</a>
+            <a href="#projects" class="px-5 py-2 text-sm font-bold text-gray-600 hover:text-primary transition-all rounded-full">Projects</a>
+            <a href="#contact" class="px-5 py-2 text-sm font-bold text-gray-600 hover:text-primary transition-all rounded-full">Contact</a>
         </div>
     </nav>
 
-    <!-- Mobile Sidebar (hidden on desktop) -->
-    <nav class="fixed left-0 top-0 bottom-0 glass z-50 w-16 flex flex-col items-center py-6 gap-6 md:hidden">
-        <a href="#" class="text-blue-600 font-black text-lg mb-4">P</a>
-        <a href="#" class="flex flex-col items-center gap-1 text-gray-600 hover:text-blue-600">
-            <i class="fas fa-home text-lg"></i>
-        </a>
-        <a href="#about" class="flex flex-col items-center gap-1 text-gray-600 hover:text-blue-600">
-            <i class="fas fa-user text-lg"></i>
-        </a>
-        <a href="#experience" class="flex flex-col items-center gap-1 text-gray-600 hover:text-blue-600">
-            <i class="fas fa-briefcase text-lg"></i>
-        </a>
-        <a href="#skills" class="flex flex-col items-center gap-1 text-gray-600 hover:text-blue-600">
-            <i class="fas fa-tools text-lg"></i>
-        </a>
-        <a href="#projects" class="flex flex-col items-center gap-1 text-gray-600 hover:text-blue-600">
-            <i class="fas fa-project-diagram text-lg"></i>
-        </a>
-        <a href="#contact" class="flex flex-col items-center gap-1 text-gray-600 hover:text-blue-600">
-            <i class="fas fa-envelope text-lg"></i>
-        </a>
+    <!-- Mobile Navbar (Bottom) -->
+    <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 glass z-50 px-6 py-3 rounded-full flex items-center gap-8 md:hidden">
+        <a href="#" class="text-primary"><i class="fas fa-home text-lg"></i></a>
+        <a href="#about" class="text-gray-500"><i class="fas fa-user text-lg"></i></a>
+        <a href="#experience" class="text-gray-500"><i class="fas fa-briefcase text-lg"></i></a>
+        <a href="#projects" class="text-gray-500"><i class="fas fa-project-diagram text-lg"></i></a>
+        <a href="#contact" class="text-gray-500"><i class="fas fa-envelope text-lg"></i></a>
     </nav>
 
     <!-- HERO SECTION -->
-    <section class="min-h-screen flex items-center justify-center pt-20 md:pt-32 pb-20 px-4 md:px-4 pl-20 md:pl-4 relative">
-        <div class="container mx-auto text-center z-10 max-w-4xl">
-            <div class="glass rounded-3xl p-12 md:p-20 shadow-2xl max-w-4xl mx-auto">
-                <h1 class="text-5xl md:text-7xl font-black gradient-text mb-6">
-                    Hi, Saya <span class="text-gray-900">Joshua Setiawan Banjarnahor</span>
+    <section class="min-h-screen flex items-center justify-center pt-20 pb-20 px-4 relative">
+        <div class="container mx-auto text-center z-10 max-w-5xl" data-aos="fade-up" data-aos-duration="1000">
+            <div class="glass rounded-[3rem] p-12 md:p-24 shadow-2xl relative overflow-hidden">
+                <!-- Background Decoration in Hero -->
+                <div class="absolute -top-20 -right-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+                <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-secondary/10 rounded-full blur-3xl"></div>
+                
+                <span class="inline-block px-4 py-1.5 mb-6 text-sm font-bold tracking-wider text-primary uppercase bg-primary/10 rounded-full">
+                    Available for Work
+                </span>
+                
+                <h1 class="text-5xl md:text-8xl font-extrabold mb-8 leading-tight">
+                    Hi, Saya <br/>
+                    <span class="gradient-text">Joshua Setiawan</span>
                 </h1>
-                <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-                    Lulusan Teknik Informatika Universitas Indraprasta PGRI | 
-                    <span class="font-bold text-blue-600 bg-blue-100 px-3 py-1 rounded-xl ml-1">
-                        AI & Cybersecurity
-                    </span>
-                    <span class="font-bold text-green-600 bg-green-100 px-3 py-1 rounded-xl ml-1">
-                        Information Technology
-                    </span>
+                
+                <p class="text-xl md:text-2xl text-gray-500 mb-12 max-w-2xl mx-auto leading-relaxed">
+                    Lulusan Teknik Informatika yang berfokus pada 
+                    <span class="font-bold text-gray-900 border-b-2 border-primary/30">AI & Cybersecurity</span>.
+                    Berdedikasi untuk membangun solusi digital yang aman dan cerdas.
                 </p>
                 
-                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <a href="https://drive.google.com/uc?export=download&id=1aCo-5DkJf959h2KXn2GhvAad9uW_6lqE" target="_blank" class="glass flex items-center gap-3 px-8 py-4 rounded-2xl font-semibold text-lg w-full sm:w-auto justify-center text-blue-600">
-                        <i class="fas fa-file-download text-lg text-blue-600"></i>
-                        Download CV
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                    <a href="https://drive.google.com/uc?export=download&id=1aCo-5DkJf959h2KXn2GhvAad9uW_6lqE" target="_blank" class="px-10 py-5 bg-primary text-white rounded-2xl font-bold text-lg hover:shadow-[0_20px_40px_rgba(79,70,229,0.3)] hover:-translate-y-1 transition-all w-full sm:w-auto">
+                        <i class="fas fa-file-download mr-2"></i> Download CV
                     </a>
-                    <a href="#contact" class="glass px-8 py-4 rounded-2xl font-semibold text-lg border-2 border-gray-300 w-full sm:w-auto justify-center text-blue-600">
-                        <i class="fas fa-paper-plane mr-2 text-blue-600"></i>Hubungi Saya
+                    <a href="#contact" class="px-10 py-5 bg-white text-primary border-2 border-primary/20 rounded-2xl font-bold text-lg hover:bg-primary/5 hover:-translate-y-1 transition-all w-full sm:w-auto">
+                        Hubungi Saya
                     </a>
                 </div>
             </div>
@@ -195,360 +223,110 @@
     </section>
 
     <!-- ABOUT SECTION -->
-    <section id="about" class="py-20 px-4 md:px-8 lg:px-16 pl-20 md:pl-4">
+    <section id="about" class="py-32 px-4 md:px-8 lg:px-16 relative overflow-hidden">
         <div class="container mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-black gradient-text mb-6">Tentang Saya</h2>
-                <div class="w-24 h-1 bg-blue-600 mx-auto rounded-full"></div>
+            <div class="text-center mb-20" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 relative inline-block section-title">Tentang Saya</h2>
+                <p class="text-gray-500 mt-6 max-w-xl mx-auto">Mengenal lebih dekat perjalanan profesional dan akademik saya.</p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <p class="text-lg text-gray-600 leading-relaxed mb-8 text-xl">
-                        Lulusan baru jurusan <strong class="text-blue-600">Teknik Informatika</strong> dari Universitas Indraprasta PGRI. 
-                        Memiliki skill set teknis yang terasah melalui program MSIB batch 6 di Hacktiv8 dengan spesialisasi di bidang 
-                        <strong class="text-purple-600">Artificial Intelligence</strong> dan <strong class="text-red-600">Cybersecurity</strong>.
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <p class="text-xl text-gray-600 leading-relaxed mb-8">
+                        Lulusan <strong class="text-primary">Teknik Informatika</strong> dari Universitas Indraprasta PGRI. 
+                        Memiliki spesialisasi di bidang <strong class="text-secondary">Artificial Intelligence</strong> dan <strong class="text-accent">Cybersecurity</strong>.
                     </p>
-                    <p class="text-lg text-gray-600 leading-relaxed mb-8 text-xl">
-                        Sangat antusias terhadap perkembangan teknologi dan memiliki dasar yang kuat untuk berkontribusi, 
-                        serta terbuka untuk posisi di berbagai bidang fungsional.
+                    <p class="text-xl text-gray-600 leading-relaxed mb-10">
+                        Berpengalaman dalam mengembangkan solusi teknologi informasi dan selalu antusias untuk mempelajari inovasi terbaru di dunia digital.
                     </p>
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-                        <div class="glass p-6 rounded-xl text-center">
-                            <div class="icon-box w-12 h-12 rounded-xl flex items-center justify-center mb-3 mx-auto">
-                                <i class="fas fa-graduation-cap text-xl text-blue-600"></i>
+                    <div class="grid grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="glass-card p-6 rounded-3xl text-center">
+                            <div class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 mx-auto text-primary">
+                                <i class="fas fa-graduation-cap text-xl"></i>
                             </div>
-                            <div class="text-2xl font-black text-blue-600 mb-1">S.Kom</div>
-                            <div class="text-sm text-gray-500 font-medium">Sarjana Komputer</div>
+                            <div class="text-2xl font-bold text-gray-900 mb-1">S.Kom</div>
+                            <div class="text-xs text-gray-500 uppercase tracking-wider font-bold">Degree</div>
                         </div>
-                        <div class="glass p-6 rounded-xl text-center">
-                            <div class="icon-box w-12 h-12 rounded-xl flex items-center justify-center mb-3 mx-auto">
-                                <i class="fas fa-certificate text-xl text-green-600"></i>
+                        <div class="glass-card p-6 rounded-3xl text-center">
+                            <div class="w-12 h-12 rounded-2xl bg-secondary/10 flex items-center justify-center mb-4 mx-auto text-secondary">
+                                <i class="fas fa-certificate text-xl"></i>
                             </div>
-                            <div class="text-3xl font-black text-green-600 mb-1">10+</div>
-                            <div class="text-sm text-gray-500 font-medium">Sertifikasi</div>
+                            <div class="text-2xl font-bold text-gray-900 mb-1">10+</div>
+                            <div class="text-xs text-gray-500 uppercase tracking-wider font-bold">Certs</div>
                         </div>
-                        <div class="glass p-6 rounded-xl text-center">
-                            <div class="icon-box w-12 h-12 rounded-xl flex items-center justify-center mb-3 mx-auto">
-                                <i class="fas fa-briefcase text-xl text-purple-600"></i>
+                        <div class="glass-card p-6 rounded-3xl text-center">
+                            <div class="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center mb-4 mx-auto text-accent">
+                                <i class="fas fa-briefcase text-xl"></i>
                             </div>
-                            <div class="text-3xl font-black text-purple-600 mb-1">3</div>
-                            <div class="text-sm text-gray-500 font-medium">Pengalaman Kerja</div>
+                            <div class="text-2xl font-bold text-gray-900 mb-1">3</div>
+                            <div class="text-xs text-gray-500 uppercase tracking-wider font-bold">Experience</div>
                         </div>
                     </div>
                 </div>
-                <div class="glass p-8 rounded-3xl mt-12">
-                    <img src="https://lh3.googleusercontent.com/d/1tLFqHq34Wu7CJHmPxoLIzRFWUT3VL3wy=w800" 
-                         alt="Joshua Setiawan Banjarnahor" 
-                         class="w-full h-72 md:h-96 object-cover rounded-2xl"
-                         onerror="this.src='https://via.placeholder.com/400x500?text=Joshua'">
+                <div class="relative" data-aos="fade-left">
+                    <div class="absolute -inset-4 bg-gradient-to-tr from-primary to-secondary rounded-[3rem] blur-2xl opacity-20"></div>
+                    <div class="glass-card p-4 rounded-[3rem] relative">
+                        <img src="https://lh3.googleusercontent.com/d/1tLFqHq34Wu7CJHmPxoLIzRFWUT3VL3wy=w800" 
+                             alt="Joshua Setiawan Banjarnahor" 
+                             class="w-full h-[500px] object-cover rounded-[2.5rem] shadow-xl"
+                             onerror="this.src='https://ui-avatars.com/api/?name=Joshua+Setiawan&background=4F46E5&color=fff&size=512'">
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- EXPERIENCE SECTION -->
-    <section id="experience" class="py-20 px-4 md:px-8 lg:px-16 pl-20 md:pl-4 bg-gray-200">
+    <section id="experience" class="py-32 px-4 md:px-8 lg:px-16 relative">
         <div class="container mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-black gradient-text mb-6">Pengalaman Kerja</h2>
-                <div class="w-24 h-1 bg-blue-600 mx-auto rounded-full"></div>
+            <div class="text-center mb-20" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 relative inline-block section-title">Pengalaman Kerja</h2>
+                <p class="text-gray-500 mt-6 max-w-xl mx-auto">Jejak profesional saya di berbagai instansi dan perusahaan.</p>
             </div>
 
-            <div class="max-w-4xl mx-auto space-y-8">
-                <!-- Kemenkumham -->
-                <div class="glass p-10 rounded-3xl">
-                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8">
-                        <div>
-                            <h3 class="text-2xl font-black text-gray-900 mb-3">Information Technology (Kepatuhan Internal)</h3>
-                            <div class="flex items-center gap-4">
-                                <span class="text-blue-600 font-bold text-lg">Kementerian Imigrasi dan Pemasyarakatan</span>
-                                <span class="text-gray-500 font-medium">• Nov 2025 - Mei 2026</span>
-                            </div>
-                        </div>
-                    </div>
-                    <ul class="space-y-4 text-lg">
-                        <li class="flex items-start gap-4 text-gray-600">
-                            <div class="w-3 h-3 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
-                            Mengembangkan dan mengelola sistem komputer serta jaringan kantor
-                        </li>
-                        <li class="flex items-start gap-4 text-gray-600">
-                            <div class="w-3 h-3 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
-                            Menyediakan dukungan teknis pada aplikasi pelayanan keimigrasian dan pemasyarakatan
-                        </li>
-                        <li class="flex items-start gap-4 text-gray-600">
-                            <div class="w-3 h-3 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
-                            Menjaga keamanan data dan sistem informasi
-                        </li>
-                        <li class="flex items-start gap-4 text-gray-600">
-                            <div class="w-3 h-3 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
-                            Membantu transformasi digital dalam layanan publik
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Hacktiv8 -->
-                <div class="glass p-10 rounded-3xl">
-                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8">
-                        <div>
-                            <h3 class="text-2xl font-black text-gray-900 mb-3">Mentee - AI & Cybersecurity</h3>
-                            <div class="flex items-center gap-4">
-                                <span class="text-purple-600 font-bold text-lg">PT Hacktivate Teknologi Indonesia</span>
-                                <span class="text-gray-500 font-medium">• Jan - Juli 2024</span>
-                            </div>
-                        </div>
-                    </div>
-                    <ul class="space-y-4 text-lg">
-                        <li class="flex items-start gap-4 text-gray-600">
-                            <div class="w-3 h-3 bg-purple-600 rounded-full mt-2 flex-shrink-0"></div>
-                            Mengikuti program studi independen intensif 5 hari per minggu selama 6 bulan (MSIB Batch 6)
-                        </li>
-                        <li class="flex items-start gap-4 text-gray-600">
-                            <div class="w-3 h-3 bg-purple-600 rounded-full mt-2 flex-shrink-0"></div>
-                            Menyelesaikan tugas-tugas teknis dan tantangan coding yang diberikan oleh mentor
-                        </li>
-                        <li class="flex items-start gap-4 text-gray-600">
-                            <div class="w-3 h-3 bg-purple-600 rounded-full mt-2 flex-shrink-0"></div>
-                            Mengembangkan project akhir: sistem deteksi emosi dalam klasifikasi teks menggunakan model LSTM
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Nippon Indosari -->
-                <div class="glass p-10 rounded-3xl">
-                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8">
-                        <div>
-                            <h3 class="text-2xl font-black text-gray-900 mb-3">Operator Produksi</h3>
-                            <div class="flex items-center gap-4">
-                                <span class="text-orange-600 font-bold text-lg">PT Nippon Indosari Corpindo Tbk</span>
-                                <span class="text-gray-500 font-medium">• Nov 2019 - 2020</span>
-                            </div>
-                        </div>
-                    </div>
-                    <ul class="space-y-4 text-lg">
-                        <li class="flex items-start gap-4 text-gray-600">
-                            <div class="w-3 h-3 bg-orange-600 rounded-full mt-2 flex-shrink-0"></div>
-                            Bertanggung jawab dalam membuat roti tawar/manis
-                        </li>
-                        <li class="flex items-start gap-4 text-gray-600">
-                            <div class="w-3 h-3 bg-orange-600 rounded-full mt-2 flex-shrink-0"></div>
-                            Mengatur loyang yang berjalan ke tempat palet
-                        </li>
-                        <li class="flex items-start gap-4 text-gray-600">
-                            <div class="w-3 h-3 bg-orange-600 rounded-full mt-2 flex-shrink-0"></div>
-                            Mengawasi ruangan fermentasi agar roti mengembang dengan baik
-                        </li>
-                    </ul>
-                </div>
+            <div class="max-w-4xl mx-auto space-y-12" data-aos="fade-up">
+                <!-- Data loaded dynamically from Supabase via app.js -->
+                <div class="text-center py-20 text-gray-400">Loading experiences...</div>
             </div>
         </div>
     </section>
 
     <!-- SKILLS SECTION -->
-    <section id="skills" class="py-20 px-4 md:px-8 lg:px-16 pl-20 md:pl-4">
+    <section id="skills" class="py-32 px-4 md:px-8 lg:px-16 relative">
         <div class="container mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-black gradient-text mb-6">Keahlian</h2>
-                <div class="w-24 h-1 bg-blue-600 mx-auto rounded-full"></div>
+            <div class="text-center mb-20" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 relative inline-block section-title">Keahlian</h2>
+                <p class="text-gray-500 mt-6 max-w-xl mx-auto">Kombinasi kemampuan teknis dan interpersonal yang saya miliki.</p>
             </div>
 
-            <div class="glass max-w-4xl mx-auto p-8">
-                <!-- Hard Skills -->
-                <div class="mb-8">
-                    <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                        <i class="fas fa-laptop-code text-blue-600"></i> Hard Skills
-                    </h3>
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <ul class="space-y-2">
-                            <li class="flex items-center gap-2 text-gray-700">
-                                <span class="w-1.5 h-1.5 bg-blue-600 rounded-full"></span>
-                                Microsoft Office (Excel, Word, PowerPoint)
-                            </li>
-                            <li class="flex items-center gap-2 text-gray-700">
-                                <span class="w-1.5 h-1.5 bg-blue-600 rounded-full"></span>
-                                Google Workspace (Sheets, Slides, Docs)
-                            </li>
-                            <li class="flex items-center gap-2 text-gray-700">
-                                <span class="w-1.5 h-1.5 bg-blue-600 rounded-full"></span>
-                                Design (Canva)
-                            </li>
-                            <li class="flex items-center gap-2 text-gray-700">
-                                <span class="w-1.5 h-1.5 bg-blue-600 rounded-full"></span>
-                                Video Editing (CapCut)
-                            </li>
-                        </ul>
-                        <ul class="space-y-2">
-                            <li class="flex items-center gap-2 text-gray-700">
-                                <span class="w-1.5 h-1.5 bg-green-600 rounded-full"></span>
-                                Java (Programmer)
-                            </li>
-                            <li class="flex items-center gap-2 text-gray-700">
-                                <span class="w-1.5 h-1.5 bg-green-600 rounded-full"></span>
-                                Python (AI & Data Science)
-                            </li>
-                            <li class="flex items-center gap-2 text-gray-700">
-                                <span class="w-1.5 h-1.5 bg-green-600 rounded-full"></span>
-                                MySQL (Database)
-                            </li>
-                            <li class="flex items-center gap-2 text-gray-700">
-                                <span class="w-1.5 h-1.5 bg-green-600 rounded-full"></span>
-                                AI & Machine Learning (LSTM)
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Soft Skills -->
-                <div class="mb-8">
-                    <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                        <i class="fas fa-users text-purple-600"></i> Soft Skills
-                    </h3>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="px-4 py-2 bg-purple-100 text-purple-700 rounded-lg font-medium">Pemecahan Masalah</span>
-                        <span class="px-4 py-2 bg-purple-100 text-purple-700 rounded-lg font-medium">Kerjasama Tim</span>
-                        <span class="px-4 py-2 bg-purple-100 text-purple-700 rounded-lg font-medium">Kemampuan Beradaptasi</span>
-                    </div>
-                </div>
-
-                <!-- Bahasa -->
-                <div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                        <i class="fas fa-language text-green-600"></i> Bahasa
-                    </h3>
-                    <div class="flex flex-wrap gap-4">
-                        <div class="flex items-center gap-2">
-                            <span class="w-2 h-2 bg-green-600 rounded-full"></span>
-                            <span class="text-gray-700">Indonesia (Native)</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="w-2 h-2 bg-yellow-500 rounded-full"></span>
-                            <span class="text-gray-700">English (Elementary)</span>
-                        </div>
-                    </div>
+            <div class="max-w-4xl mx-auto" data-aos="fade-up">
+                <div class="glass-card p-10 rounded-[2.5rem]">
+                    <!-- Content loaded by app.js -->
+                    <div class="text-center py-10 text-gray-400">Loading skills...</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- EDUCATION & CERTIFICATION SECTION -->
-    <section id="education" class="py-20 px-4 md:px-8 lg:px-16 pl-20 md:pl-4 bg-gray-200">
+    <section id="education" class="py-32 px-4 md:px-8 lg:px-16 relative">
         <div class="container mx-auto">
-            <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
                 <!-- Pendidikan -->
-                <div>
-                    <h2 class="text-3xl md:text-4xl font-black gradient-text mb-8">Pendidikan</h2>
+                <div data-aos="fade-right">
+                    <h2 class="text-3xl md:text-4xl font-extrabold mb-10 gradient-text">Pendidikan</h2>
                     <div class="space-y-6">
-                        <div class="glass p-6">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-blue-100 flex items-center justify-center">
-                                    <i class="fas fa-university text-blue-600 text-xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-gray-900">Sarjana Komputer (S.Kom)</h3>
-                                    <p class="text-blue-600 font-medium">Universitas Indraprasta PGRI</p>
-                                    <p class="text-gray-500 text-sm">Agustus 2021 - 2025</p>
-                                    <p class="text-gray-600 text-sm mt-1">Jurusan Teknik Informatika</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="glass p-6">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-green-100 flex items-center justify-center">
-                                    <i class="fas fa-school text-green-600 text-xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-gray-900">SMAN 1 Bungursari</h3>
-                                    <p class="text-green-600 font-medium">Jurusan IPS</p>
-                                    <p class="text-gray-500 text-sm">Juli 2016 - 2019</p>
-                                </div>
-                            </div>
-                        </div>
+                        <!-- Loaded by app.js -->
+                        <div class="text-gray-400">Loading education...</div>
                     </div>
                 </div>
 
                 <!-- Sertifikasi -->
-                <div>
-                    <h2 class="text-3xl md:text-4xl font-black gradient-text mb-8">Sertifikasi</h2>
-                    <div class="glass p-6">
-                        <ul class="space-y-3">
-                            <li class="flex items-start gap-3">
-                                <i class="fas fa-certificate text-yellow-500 mt-1"></i>
-                                <div>
-                                    <p class="font-medium text-gray-900">Instalasi Tenaga Listrik</p>
-                                    <p class="text-gray-500 text-sm">Balai Latihan Kerja Purwakarta</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <i class="fas fa-certificate text-blue-500 mt-1"></i>
-                                <div>
-                                    <p class="font-medium text-gray-900">Data Analyst</p>
-                                    <p class="text-gray-500 text-sm">PT. Revolusi Cita Edukasi</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <i class="fas fa-certificate text-purple-500 mt-1"></i>
-                                <div>
-                                    <p class="font-medium text-gray-900">Software Engineer</p>
-                                    <p class="text-gray-500 text-sm">PT. Revolusi Cita Edukasi</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <i class="fas fa-certificate text-green-500 mt-1"></i>
-                                <div>
-                                    <p class="font-medium text-gray-900">Data Science</p>
-                                    <p class="text-gray-500 text-sm">DQLab.id</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <i class="fas fa-certificate text-pink-500 mt-1"></i>
-                                <div>
-                                    <p class="font-medium text-gray-900">Digital Marketing</p>
-                                    <p class="text-gray-500 text-sm">PT. Revolusi Cita Edukasi</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <i class="fas fa-certificate text-orange-500 mt-1"></i>
-                                <div>
-                                    <p class="font-medium text-gray-900">Front End</p>
-                                    <p class="text-gray-500 text-sm">PT. Dibimbing Digital Indonesia</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <i class="fas fa-shield-alt text-red-500 mt-1"></i>
-                                <div>
-                                    <p class="font-medium text-gray-900">Cyber Security</p>
-                                    <p class="text-gray-500 text-sm">PT. Cisco System Indonesia</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <i class="fas fa-shield-alt text-blue-600 mt-1"></i>
-                                <div>
-                                    <p class="font-medium text-gray-900">Cyber Security</p>
-                                    <p class="text-gray-500 text-sm">IBM Skills-Build</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <i class="fas fa-brain text-purple-600 mt-1"></i>
-                                <div>
-                                    <p class="font-medium text-gray-900">Machine Learning for Data Science</p>
-                                    <p class="text-gray-500 text-sm">IBM</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <i class="fas fa-award text-green-600 mt-1"></i>
-                                <div>
-                                    <p class="font-medium text-gray-900">MSIB Batch 6 AI & Cybersecurity</p>
-                                    <p class="text-gray-500 text-sm">PT. Hacktivate Teknologi Indonesia</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <i class="fas fa-language text-blue-500 mt-1"></i>
-                                <div>
-                                    <p class="font-medium text-gray-900">TOEFL ITP</p>
-                                    <p class="text-gray-500 text-sm">Global Operation Indonesia</p>
-                                </div>
-                            </li>
-                        </ul>
+                <div data-aos="fade-left">
+                    <h2 class="text-3xl md:text-4xl font-extrabold mb-10 gradient-text">Sertifikasi</h2>
+                    <div class="glass-card p-8 rounded-[2rem]">
+                        <!-- Loaded by app.js -->
+                        <div class="text-gray-400">Loading certifications...</div>
                     </div>
                 </div>
             </div>
@@ -556,179 +334,183 @@
     </section>
 
     <!-- ORGANIZATION SECTION -->
-    <section id="organization" class="py-20 px-4 md:px-8 lg:px-16 pl-20 md:pl-4">
+    <section id="organization" class="py-32 px-4 md:px-8 lg:px-16 relative">
         <div class="container mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-black gradient-text mb-6">Organisasi</h2>
-                <div class="w-24 h-1 bg-blue-600 mx-auto rounded-full"></div>
+            <div class="text-center mb-20" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 relative inline-block section-title">Organisasi</h2>
+                <p class="text-gray-500 mt-6 max-w-xl mx-auto">Kontribusi saya dalam kegiatan berorganisasi.</p>
             </div>
 
-            <div class="max-w-4xl mx-auto">
-                <div class="glass p-8">
-                    <div class="flex items-start gap-4 mb-6">
-                        <div class="w-14 h-14 bg-blue-100 flex items-center justify-center">
-                            <i class="fas fa-church text-blue-600 text-2xl"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-xl font-bold text-gray-900">Persekutuan Mahasiswa Kristen (PMK)</h3>
-                            <p class="text-blue-600 font-medium">Universitas Indraprasta PGRI</p>
-                            <p class="text-gray-500 text-sm mb-4">Agustus 2021 - 2025</p>
-
-                            <div class="space-y-4">
-                                <div class="border-l-4 border-blue-500 pl-4">
-                                    <h4 class="font-semibold text-gray-900">Anggota</h4>
-                                    <ul class="mt-2 space-y-1 text-gray-600 text-sm">
-                                        <li>• Menghadiri rapat PMK untuk membahas program kerja dan kegiatan organisasi</li>
-                                        <li>• Berpartisipasi dalam kegiatan persekutuan doa dan ibadah bersama</li>
-                                        <li>• Bekerjasama dengan baik dengan anggota PMK lainnya untuk mencapai tujuan bersama</li>
-                                    </ul>
-                                </div>
-
-                                <div class="border-l-4 border-purple-500 pl-4">
-                                    <h4 class="font-semibold text-gray-900">Wakil Kominfo</h4>
-                                    <ul class="mt-2 space-y-1 text-gray-600 text-sm">
-                                        <li>• Mengatur dan membantu ketua dalam menjalani tugas</li>
-                                        <li>• Membuat poster untuk kegiatan organisasi</li>
-                                        <li>• Mengelola live streaming dan upload konten di sosial media</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="max-w-4xl mx-auto" data-aos="fade-up">
+                <!-- Loaded by app.js -->
+                <div class="text-center py-10 text-gray-400">Loading organization...</div>
             </div>
         </div>
     </section>
 
     <!-- PROJECTS SECTION -->
-    <section id="projects" class="py-20 px-4 md:px-8 lg:px-16 pl-20 md:pl-4 bg-gray-200">
+    <section id="projects" class="py-32 px-4 md:px-8 lg:px-16 relative">
         <div class="container mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-black gradient-text mb-6">Proyek Unggulan</h2>
-                <div class="w-24 h-1 bg-blue-600 mx-auto rounded-full"></div>
+            <div class="text-center mb-20" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 relative inline-block section-title">Proyek Unggulan</h2>
+                <p class="text-gray-500 mt-6 max-w-xl mx-auto">Beberapa karya dan riset yang telah saya kembangkan.</p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                <!-- Project 1: KLIP -->
-                <a href="https://github.com/jvshuaaa/KLIP" target="_blank" class="glass p-8 rounded-3xl hover:shadow-lg transition block">
-                    <div class="h-48 bg-blue-100 rounded-2xl mb-6 flex items-center justify-center">
-                        <i class="fab fa-github text-6xl text-blue-600"></i>
-                    </div>
-                    <h3 class="text-2xl font-black text-gray-900 mb-4">KLIP</h3>
-                    <p class="text-gray-600 mb-6">Project repository KLIP - Lihat detail di GitHub</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm font-bold text-gray-700">
-                            <i class="fab fa-github mr-1"></i>GitHub
-                        </span>
-                    </div>
-                    <div class="text-blue-600 font-semibold flex items-center">
-                        Lihat Repository <i class="fas fa-arrow-right ml-2"></i>
-                    </div>
-                </a>
-
-                <!-- Project 2: TA (Tugas Akhir) -->
-                <a href="https://github.com/jvshuaaa/TA" target="_blank" class="glass p-8 rounded-3xl hover:shadow-lg transition block">
-                    <div class="h-48 bg-green-100 rounded-2xl mb-6 flex items-center justify-center">
-                        <i class="fas fa-graduation-cap text-6xl text-green-600"></i>
-                    </div>
-                    <h3 class="text-2xl font-black text-gray-900 mb-4">TA (Tugas Akhir)</h3>
-                    <p class="text-gray-600 mb-6">Project Tugas Akhir - Lihat detail di GitHub</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm font-bold text-gray-700">
-                            <i class="fab fa-github mr-1"></i>GitHub
-                        </span>
-                    </div>
-                    <div class="text-green-600 font-semibold flex items-center">
-                        Lihat Repository <i class="fas fa-arrow-right ml-2"></i>
-                    </div>
-                </a>
+            <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto" data-aos="fade-up">
+                <!-- Loaded by app.js -->
+                <div class="text-center py-20 text-gray-400">Loading projects...</div>
             </div>
         </div>
     </section>
 
     <!-- CONTACT SECTION -->
-    <section id="contact" class="py-20 px-4 md:px-8 lg:px-16 pl-20 md:pl-4">
-        <div class="container mx-auto text-center">
-            <div class="max-w-2xl mx-auto mb-16">
-                <h2 class="text-4xl md:text-5xl font-black gradient-text mb-6">Mari Berkolaborasi</h2>
-                <p class="text-xl text-gray-600 leading-relaxed mb-8">
-                    Siap untuk proyek IT menarik atau peluang karir baru?
-                </p>
+    <section id="contact" class="py-32 px-4 md:px-8 lg:px-16 relative">
+        <div class="container mx-auto">
+            <div class="text-center mb-20" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 relative inline-block section-title">Mari Berkolaborasi</h2>
+                <p class="text-gray-500 mt-6 max-w-xl mx-auto">Terbuka untuk peluang baru dan diskusi teknologi.</p>
             </div>
 
-            <div class="glass max-w-2xl mx-auto p-8">
-                <div class="grid md:grid-cols-2 gap-8 mb-8">
+            <div class="glass-card max-w-5xl mx-auto p-10 md:p-16 rounded-[3rem]" data-aos="zoom-in">
+                <div class="grid lg:grid-cols-2 gap-16">
                     <div>
-                        <h3 class="text-2xl font-black text-gray-900 mb-6">Kontak Saya</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-center gap-4 p-4 glass">
-                                <div class="w-12 h-12 bg-gray-100 flex items-center justify-center">
-                                    <i class="fas fa-envelope text-xl text-gray-600"></i>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-8">Kontak Saya</h3>
+                        <div class="space-y-6">
+                            <a href="mailto:your.email@gmail.com" class="flex items-center gap-6 p-6 rounded-3xl hover:bg-primary/5 transition-all group">
+                                <div class="w-14 h-14 bg-primary/10 flex items-center justify-center rounded-2xl text-primary group-hover:scale-110 transition-transform">
+                                    <i class="fas fa-envelope text-2xl"></i>
                                 </div>
-                                <div class="text-left">
-                                    <div class="font-bold text-gray-900 mb-1 text-sm">Email</div>
-                                    <a href="mailto:your.email@gmail.com" class="text-blue-600 font-semibold text-base block">your.email@gmail.com</a>
+                                <div>
+                                    <div class="font-bold text-gray-900 mb-1">Email</div>
+                                    <div class="text-primary font-medium">your.email@gmail.com</div>
                                 </div>
-                            </div>
-                            <div class="flex items-center gap-4 p-4 glass">
-                                <div class="w-12 h-12 bg-green-100 flex items-center justify-center">
-                                    <i class="fab fa-whatsapp text-xl text-green-600"></i>
+                            </a>
+                            <a href="https://wa.me/628123456789" class="flex items-center gap-6 p-6 rounded-3xl hover:bg-green-500/5 transition-all group">
+                                <div class="w-14 h-14 bg-green-500/10 flex items-center justify-center rounded-2xl text-green-600 group-hover:scale-110 transition-transform">
+                                    <i class="fab fa-whatsapp text-2xl"></i>
                                 </div>
-                                <div class="text-left">
-                                    <div class="font-bold text-gray-900 mb-1 text-sm">WhatsApp</div>
-                                    <a href="https://wa.me/628123456789" class="text-green-600 font-semibold text-base block">+62 812 3456 7890</a>
+                                <div>
+                                    <div class="font-bold text-gray-900 mb-1">WhatsApp</div>
+                                    <div class="text-green-600 font-medium">+62 812 3456 7890</div>
                                 </div>
-                            </div>
-                            <div class="flex items-center gap-4 p-4 glass">
-                                <div class="w-12 h-12 bg-blue-100 flex items-center justify-center">
-                                    <i class="fab fa-linkedin text-xl text-blue-600"></i>
+                            </a>
+                            <a href="https://linkedin.com/in/yourprofile" class="flex items-center gap-6 p-6 rounded-3xl hover:bg-blue-600/5 transition-all group">
+                                <div class="w-14 h-14 bg-blue-600/10 flex items-center justify-center rounded-2xl text-blue-600 group-hover:scale-110 transition-transform">
+                                    <i class="fab fa-linkedin text-2xl"></i>
                                 </div>
-                                <div class="text-left">
-                                    <div class="font-bold text-gray-900 mb-1 text-sm">LinkedIn</div>
-                                    <a href="https://linkedin.com/in/yourprofile" class="text-blue-600 font-semibold text-base block">linkedin.com/in/yourprofile</a>
+                                <div>
+                                    <div class="font-bold text-gray-900 mb-1">LinkedIn</div>
+                                    <div class="text-blue-600 font-medium">linkedin.com/in/yourprofile</div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
 
                     <div>
-                        <h3 class="text-2xl font-black text-gray-900 mb-6">Pesan Langsung</h3>
-                        <form class="space-y-3">
-                            <input type="text" placeholder="Nama Lengkap" class="w-full p-4 glass text-gray-900 placeholder-gray-400 text-base bg-white">
-                            <input type="email" placeholder="Email" class="w-full p-4 glass text-gray-900 placeholder-gray-400 text-base bg-white">
-                            <textarea rows="3" placeholder="Pesan Anda..." class="w-full p-4 glass text-gray-900 placeholder-gray-400 resize-none text-base bg-white"></textarea>
-                            <button type="submit" class="w-full glass p-4 font-bold text-base border-2 border-blue-600 text-blue-600">
-                                <i class="fas fa-paper-plane mr-2"></i>Kirim Pesan
+                        <h3 class="text-3xl font-bold text-gray-900 mb-8">Pesan Langsung</h3>
+                        <form class="space-y-4">
+                            <input type="text" placeholder="Nama Lengkap" class="w-full p-5 bg-white/50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all">
+                            <input type="email" placeholder="Email" class="w-full p-5 bg-white/50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all">
+                            <textarea rows="4" placeholder="Pesan Anda..." class="w-full p-5 bg-white/50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"></textarea>
+                            <button type="submit" class="w-full py-5 bg-primary text-white font-bold rounded-2xl hover:shadow-lg hover:-translate-y-1 transition-all">
+                                <i class="fas fa-paper-plane mr-2"></i> Kirim Pesan
                             </button>
                         </form>
                     </div>
                 </div>
 
-                <div class="glass p-6 border-t border-gray-200">
-                    <p class="text-gray-500 text-base">
-                        2024 [NAMA ANDA]. Dibuat dengan menggunakan HTML, Tailwind CSS & Vanilla JS.
-                    </p>
+                <div class="mt-20 pt-10 border-t border-gray-100 text-center text-gray-400">
+                    <p>© <span id="year">2024</span> Joshua Setiawan Banjarnahor. Designed with ❤️ for excellence.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- BACK TO TOP -->
-    <button onclick="window.scrollTo({top: 0})" class="fixed bottom-8 right-8 w-14 h-14 glass rounded-full text-2xl flex items-center justify-center z-50" title="Kembali ke atas">
-        <i class="fas fa-arrow-up text-blue-600"></i>
+    <button onclick="window.scrollTo({top: 0})" class="fixed bottom-10 right-10 w-16 h-16 glass rounded-full text-2xl flex items-center justify-center z-50 text-primary shadow-2xl hover:scale-110 transition-all opacity-0 invisible translate-y-10" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
     </button>
 
     <script>
-        // Anchor links
+        // AOS Init
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Set current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Anchor links with smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ block: 'start' });
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        const offset = 100;
+                        const bodyRect = document.body.getBoundingClientRect().top;
+                        const elementRect = target.getBoundingClientRect().top;
+                        const elementPosition = elementRect - bodyRect;
+                        const offsetPosition = elementPosition - offset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
                 }
             });
         });
+
+        // Scroll Spy for Navigation with throttling
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-floating a');
+        let isScrolling = false;
+
+        window.addEventListener('scroll', () => {
+            if (!isScrolling) {
+                window.requestAnimationFrame(() => {
+                    let current = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.offsetTop;
+                        const sectionHeight = section.clientHeight;
+                        if (pageYOffset >= sectionTop - 150) {
+                            current = section.getAttribute('id');
+                        }
+                    });
+
+                    navLinks.forEach(link => {
+                        link.classList.remove('active-nav');
+                        if (link.getAttribute('href') === `#${current}`) {
+                            link.classList.add('active-nav');
+                        }
+                        if (current === '' && link.getAttribute('href') === '#') {
+                            link.classList.add('active-nav');
+                        }
+                    });
+                    
+                    // Back to top visibility
+                    const btn = document.getElementById('backToTop');
+                    if (window.scrollY > 500) {
+                        btn.classList.remove('opacity-0', 'invisible', 'translate-y-10');
+                        btn.classList.add('opacity-100', 'visible', 'translate-y-0');
+                    } else {
+                        btn.classList.add('opacity-0', 'invisible', 'translate-y-10');
+                        btn.classList.remove('opacity-100', 'visible', 'translate-y-0');
+                    }
+                    
+                    isScrolling = false;
+                });
+                isScrolling = true;
+            }
+        });
     </script>
+</body>
+</html>
 </body>
 </html>

@@ -7,14 +7,13 @@ import { supabase } from './supabase.js';
 export async function getProfile() {
     const { data, error } = await supabase
         .from('profile')
-        .select('*')
-        .single();
+        .select('*');
     
     if (error) {
         console.error('Error fetching profile:', error);
         return null;
     }
-    return data;
+    return data && data.length > 0 ? data[0] : null;
 }
 
 export async function updateProfile(profileData) {
