@@ -213,6 +213,16 @@ async function renderCertifications() {
     const certs = await getCertifications();
     if (!certs || certs.length === 0) return;
 
+    // Deduplicate
+    const uniqueCerts = [];
+    const seenCerts = new Set();
+    certs.forEach(cert => {
+        if (!seenCerts.has(cert.nama)) {
+            seenCerts.add(cert.nama);
+            uniqueCerts.push(cert);
+        }
+    });
+
     const container = document.querySelector('#education .grid > div:last-child .glass');
     if (!container) return;
 
@@ -231,7 +241,7 @@ async function renderCertifications() {
 
     const html = `
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            ${certs.map((cert, index) => {
+            ${uniqueCerts.map((cert, index) => {
                 const icon = Object.entries(iconMap).find(([key, _]) => cert.nama.includes(key))?.[1] || 'fa-certificate';
                 return `
                     <div class="flex items-center gap-4 p-4 rounded-2xl hover:bg-white/50 transition-all group" data-aos="fade-up" data-aos-delay="${index * 50}">
@@ -255,8 +265,16 @@ async function renderCertifications() {
 // 5. RENDER SKILLS
 async function renderSkills() {
     // Hard Skills
-    const hardSkills = await getSkillsByCategory('hard');
+    let hardSkills = await getSkillsByCategory('hard');
     if (hardSkills && hardSkills.length > 0) {
+        // Deduplicate
+        const seenHard = new Set();
+        hardSkills = hardSkills.filter(s => {
+            if (seenHard.has(s.nama)) return false;
+            seenHard.add(s.nama);
+            return true;
+        });
+
         const container = document.querySelector('#skills .glass-card');
         if (container) {
             const techSkills = hardSkills.filter(s => 
@@ -304,9 +322,17 @@ async function renderSkills() {
             `;
             
             // Render Soft Skills into the placeholder
-            const softSkills = await getSkillsByCategory('soft');
+            let softSkills = await getSkillsByCategory('soft');
             const softContainer = document.getElementById('soft-skills-container');
             if (softSkills && softContainer) {
+                // Deduplicate
+                const seenSoft = new Set();
+                softSkills = softSkills.filter(s => {
+                    if (seenSoft.has(s.nama)) return false;
+                    seenSoft.add(s.nama);
+                    return true;
+                });
+
                 softContainer.innerHTML = softSkills.map(skill => `
                     <span class="px-6 py-3 bg-secondary/10 text-secondary rounded-full font-bold text-sm">
                         <i class="fas fa-check-circle mr-2"></i> ${skill.nama}
@@ -315,9 +341,17 @@ async function renderSkills() {
             }
 
             // Render Languages into the placeholder
-            const languages = await getSkillsByCategory('language');
+            let languages = await getSkillsByCategory('language');
             const langContainer = document.getElementById('languages-container');
             if (languages && langContainer) {
+                // Deduplicate
+                const seenLang = new Set();
+                languages = languages.filter(s => {
+                    if (seenLang.has(s.nama)) return false;
+                    seenLang.add(s.nama);
+                    return true;
+                });
+
                 langContainer.innerHTML = languages.map((lang, index) => `
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 rounded-xl ${index === 0 ? 'bg-green-100 text-green-600' : 'bg-yellow-100 text-yellow-600'} flex items-center justify-center font-bold">
