@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,8 @@
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script type="module" src="./api.js"></script>
     <script type="module" src="./app.js"></script>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
     <script>
         tailwind.config = {
             theme: {
@@ -48,7 +50,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
-        
+
         :root {
             --glass-bg: rgba(255, 255, 255, 0.7);
             --glass-border: rgba(255, 255, 255, 0.5);
@@ -57,7 +59,7 @@
         * {
             scroll-behavior: smooth;
         }
-        
+
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background: #fdfdfd;
@@ -75,19 +77,19 @@
             height: 100%;
             z-index: -1;
             background-color: #fdfdfd;
-            background-image: 
-                radial-gradient(at 0% 0%, hsla(253,16%,95%,1) 0, transparent 50%), 
-                radial-gradient(at 50% 0%, hsla(225,39%,95%,1) 0, transparent 50%), 
-                radial-gradient(at 100% 0%, hsla(339,49%,95%,1) 0, transparent 50%);
+            background-image:
+                radial-gradient(at 0% 0%, hsla(253, 16%, 95%, 1) 0, transparent 50%),
+                radial-gradient(at 50% 0%, hsla(225, 39%, 95%, 1) 0, transparent 50%),
+                radial-gradient(at 100% 0%, hsla(339, 49%, 95%, 1) 0, transparent 50%);
             opacity: 0.8;
         }
-        
+
         .glass {
             background: rgba(255, 255, 255, 0.95);
             border: 1px solid rgba(255, 255, 255, 0.5);
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
         }
-        
+
         .glass-card {
             background: #ffffff;
             border: 1px solid rgba(0, 0, 0, 0.05);
@@ -101,18 +103,23 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
             border-color: rgba(79, 70, 229, 0.2);
         }
-        
+
         .gradient-text {
             background: linear-gradient(135deg, #4F46E5 0%, #0EA5E9 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
-        h1, h2, h3, h4, h5, h6 {
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             font-family: 'Outfit', sans-serif;
         }
-        
+
         .section-title::after {
             content: '';
             position: absolute;
@@ -145,41 +152,58 @@
         ::-webkit-scrollbar {
             width: 8px;
         }
+
         ::-webkit-scrollbar-track {
             background: #f1f1f1;
         }
+
         ::-webkit-scrollbar-thumb {
             background: #c7c7c7;
             border-radius: 10px;
         }
+
         ::-webkit-scrollbar-thumb:hover {
             background: #4F46E5;
         }
     </style>
 </head>
+
 <body class="overflow-x-hidden">
     <!-- Mesh Background -->
     <div class="mesh-bg"></div>
-    
+
     <!-- Decorative Blobs -->
-    <div class="fixed top-0 -left-4 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply opacity-10 animate-blob [will-change:transform]"></div>
-    <div class="fixed top-0 -right-4 w-72 h-72 bg-yellow-200 rounded-full mix-blend-multiply opacity-10 animate-blob animation-delay-2000 [will-change:transform]"></div>
-    <div class="fixed -bottom-8 left-20 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply opacity-10 animate-blob animation-delay-4000 [will-change:transform]"></div>
+    <div
+        class="fixed top-0 -left-4 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply opacity-10 animate-blob [will-change:transform]">
+    </div>
+    <div
+        class="fixed top-0 -right-4 w-72 h-72 bg-yellow-200 rounded-full mix-blend-multiply opacity-10 animate-blob animation-delay-2000 [will-change:transform]">
+    </div>
+    <div
+        class="fixed -bottom-8 left-20 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply opacity-10 animate-blob animation-delay-4000 [will-change:transform]">
+    </div>
     <!-- NAVIGATION BAR - Desktop: Top, Mobile: Left Side -->
     <!-- Desktop Navbar -->
     <nav class="fixed nav-floating glass z-50 hidden md:flex items-center justify-center">
         <div class="flex items-center gap-1">
-            <a href="#" class="px-5 py-2 text-sm font-bold text-gray-600 hover:text-primary transition-all rounded-full active-nav">Home</a>
-            <a href="#about" class="px-5 py-2 text-sm font-bold text-gray-600 hover:text-primary transition-all rounded-full">Profile</a>
-            <a href="#experience" class="px-5 py-2 text-sm font-bold text-gray-600 hover:text-primary transition-all rounded-full">Experience</a>
-            <a href="#skills" class="px-5 py-2 text-sm font-bold text-gray-600 hover:text-primary transition-all rounded-full">Skills</a>
-            <a href="#projects" class="px-5 py-2 text-sm font-bold text-gray-600 hover:text-primary transition-all rounded-full">Projects</a>
-            <a href="#contact" class="px-5 py-2 text-sm font-bold text-gray-600 hover:text-primary transition-all rounded-full">Contact</a>
+            <a href="#"
+                class="px-5 py-2 text-sm font-bold text-gray-600 hover:text-primary transition-all rounded-full active-nav">Home</a>
+            <a href="#about"
+                class="px-5 py-2 text-sm font-bold text-gray-600 hover:text-primary transition-all rounded-full">Profile</a>
+            <a href="#experience"
+                class="px-5 py-2 text-sm font-bold text-gray-600 hover:text-primary transition-all rounded-full">Experience</a>
+            <a href="#skills"
+                class="px-5 py-2 text-sm font-bold text-gray-600 hover:text-primary transition-all rounded-full">Skills</a>
+            <a href="#projects"
+                class="px-5 py-2 text-sm font-bold text-gray-600 hover:text-primary transition-all rounded-full">Projects</a>
+            <a href="#contact"
+                class="px-5 py-2 text-sm font-bold text-gray-600 hover:text-primary transition-all rounded-full">Contact</a>
         </div>
     </nav>
 
     <!-- Mobile Navbar (Bottom) -->
-    <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 glass z-50 px-6 py-3 rounded-full flex items-center gap-8 md:hidden">
+    <nav
+        class="fixed bottom-6 left-1/2 -translate-x-1/2 glass z-50 px-6 py-3 rounded-full flex items-center gap-8 md:hidden">
         <a href="#" class="text-primary"><i class="fas fa-home text-lg"></i></a>
         <a href="#about" class="text-gray-500"><i class="fas fa-user text-lg"></i></a>
         <a href="#experience" class="text-gray-500"><i class="fas fa-briefcase text-lg"></i></a>
@@ -194,27 +218,31 @@
                 <!-- Background Decoration in Hero -->
                 <div class="absolute -top-20 -right-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
                 <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-secondary/10 rounded-full blur-3xl"></div>
-                
-                <span class="inline-block px-4 py-1.5 mb-6 text-sm font-bold tracking-wider text-primary uppercase bg-primary/10 rounded-full">
+
+                <span
+                    class="inline-block px-4 py-1.5 mb-6 text-sm font-bold tracking-wider text-primary uppercase bg-primary/10 rounded-full">
                     Available for Work
                 </span>
-                
+
                 <h1 class="text-5xl md:text-8xl font-extrabold mb-8 leading-tight">
-                    Hi, Saya <br/>
+                    Hi, Saya <br />
                     <span class="gradient-text">Joshua Setiawan</span>
                 </h1>
-                
+
                 <p class="text-xl md:text-2xl text-gray-500 mb-12 max-w-2xl mx-auto leading-relaxed">
-                    Lulusan Teknik Informatika yang berfokus pada 
+                    Lulusan Teknik Informatika yang berfokus pada
                     <span class="font-bold text-gray-900 border-b-2 border-primary/30">AI & Cybersecurity</span>.
                     Berdedikasi untuk membangun solusi digital yang aman dan cerdas.
                 </p>
-                
+
                 <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                    <a href="https://drive.google.com/uc?export=download&id=1aCo-5DkJf959h2KXn2GhvAad9uW_6lqE" target="_blank" class="px-10 py-5 bg-primary text-white rounded-2xl font-bold text-lg hover:shadow-[0_20px_40px_rgba(79,70,229,0.3)] hover:-translate-y-1 transition-all w-full sm:w-auto">
+                    <a href="https://drive.google.com/uc?export=download&id=1aCo-5DkJf959h2KXn2GhvAad9uW_6lqE"
+                        target="_blank"
+                        class="px-10 py-5 bg-primary text-white rounded-2xl font-bold text-lg hover:shadow-[0_20px_40px_rgba(79,70,229,0.3)] hover:-translate-y-1 transition-all w-full sm:w-auto">
                         <i class="fas fa-file-download mr-2"></i> Download CV
                     </a>
-                    <a href="#contact" class="px-10 py-5 bg-white text-primary border-2 border-primary/20 rounded-2xl font-bold text-lg hover:bg-primary/5 hover:-translate-y-1 transition-all w-full sm:w-auto">
+                    <a href="#contact"
+                        class="px-10 py-5 bg-white text-primary border-2 border-primary/20 rounded-2xl font-bold text-lg hover:bg-primary/5 hover:-translate-y-1 transition-all w-full sm:w-auto">
                         Hubungi Saya
                     </a>
                 </div>
@@ -226,36 +254,44 @@
     <section id="about" class="py-32 px-4 md:px-8 lg:px-16 relative overflow-hidden">
         <div class="container mx-auto">
             <div class="text-center mb-20" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 relative inline-block section-title">Tentang Saya</h2>
-                <p class="text-gray-500 mt-6 max-w-xl mx-auto">Mengenal lebih dekat perjalanan profesional dan akademik saya.</p>
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 relative inline-block section-title">Tentang Saya
+                </h2>
+                <p class="text-gray-500 mt-6 max-w-xl mx-auto">Mengenal lebih dekat perjalanan profesional dan akademik
+                    saya.</p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-16 items-center">
                 <div data-aos="fade-right">
                     <p class="text-xl text-gray-600 leading-relaxed mb-8">
-                        Lulusan <strong class="text-primary">Teknik Informatika</strong> dari Universitas Indraprasta PGRI. 
-                        Memiliki spesialisasi di bidang <strong class="text-secondary">Artificial Intelligence</strong> dan <strong class="text-accent">Cybersecurity</strong>.
+                        Lulusan <strong class="text-primary">Teknik Informatika</strong> dari Universitas Indraprasta
+                        PGRI.
+                        Memiliki spesialisasi di bidang <strong class="text-secondary">Artificial Intelligence</strong>
+                        dan <strong class="text-accent">Cybersecurity</strong>.
                     </p>
                     <p class="text-xl text-gray-600 leading-relaxed mb-10">
-                        Berpengalaman dalam mengembangkan solusi teknologi informasi dan selalu antusias untuk mempelajari inovasi terbaru di dunia digital.
+                        Berpengalaman dalam mengembangkan solusi teknologi informasi dan selalu antusias untuk
+                        mempelajari inovasi terbaru di dunia digital.
                     </p>
                     <div class="grid grid-cols-2 lg:grid-cols-3 gap-6">
                         <div class="glass-card p-6 rounded-3xl text-center">
-                            <div class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 mx-auto text-primary">
+                            <div
+                                class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 mx-auto text-primary">
                                 <i class="fas fa-graduation-cap text-xl"></i>
                             </div>
                             <div class="text-2xl font-bold text-gray-900 mb-1">S.Kom</div>
                             <div class="text-xs text-gray-500 uppercase tracking-wider font-bold">Degree</div>
                         </div>
                         <div class="glass-card p-6 rounded-3xl text-center">
-                            <div class="w-12 h-12 rounded-2xl bg-secondary/10 flex items-center justify-center mb-4 mx-auto text-secondary">
+                            <div
+                                class="w-12 h-12 rounded-2xl bg-secondary/10 flex items-center justify-center mb-4 mx-auto text-secondary">
                                 <i class="fas fa-certificate text-xl"></i>
                             </div>
                             <div class="text-2xl font-bold text-gray-900 mb-1">10+</div>
                             <div class="text-xs text-gray-500 uppercase tracking-wider font-bold">Certs</div>
                         </div>
                         <div class="glass-card p-6 rounded-3xl text-center">
-                            <div class="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center mb-4 mx-auto text-accent">
+                            <div
+                                class="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center mb-4 mx-auto text-accent">
                                 <i class="fas fa-briefcase text-xl"></i>
                             </div>
                             <div class="text-2xl font-bold text-gray-900 mb-1">3</div>
@@ -264,12 +300,14 @@
                     </div>
                 </div>
                 <div class="relative" data-aos="fade-left">
-                    <div class="absolute -inset-4 bg-gradient-to-tr from-primary to-secondary rounded-[3rem] blur-2xl opacity-20"></div>
+                    <div
+                        class="absolute -inset-4 bg-gradient-to-tr from-primary to-secondary rounded-[3rem] blur-2xl opacity-20">
+                    </div>
                     <div class="glass-card p-4 rounded-[3rem] relative">
-                        <img src="https://lh3.googleusercontent.com/d/1tLFqHq34Wu7CJHmPxoLIzRFWUT3VL3wy=w800" 
-                             alt="Joshua Setiawan Banjarnahor" 
-                             class="w-full h-[500px] object-cover rounded-[2.5rem] shadow-xl"
-                             onerror="this.src='https://ui-avatars.com/api/?name=Joshua+Setiawan&background=4F46E5&color=fff&size=512'">
+                        <img src="https://lh3.googleusercontent.com/d/1tLFqHq34Wu7CJHmPxoLIzRFWUT3VL3wy=w800"
+                            alt="Joshua Setiawan Banjarnahor"
+                            class="w-full h-[500px] object-cover rounded-[2.5rem] shadow-xl"
+                            onerror="this.src='https://ui-avatars.com/api/?name=Joshua+Setiawan&background=4F46E5&color=fff&size=512'">
                     </div>
                 </div>
             </div>
@@ -280,8 +318,10 @@
     <section id="experience" class="py-32 px-4 md:px-8 lg:px-16 relative">
         <div class="container mx-auto">
             <div class="text-center mb-20" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 relative inline-block section-title">Pengalaman Kerja</h2>
-                <p class="text-gray-500 mt-6 max-w-xl mx-auto">Jejak profesional saya di berbagai instansi dan perusahaan.</p>
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 relative inline-block section-title">Pengalaman
+                    Kerja</h2>
+                <p class="text-gray-500 mt-6 max-w-xl mx-auto">Jejak profesional saya di berbagai instansi dan
+                    perusahaan.</p>
             </div>
 
             <div class="max-w-4xl mx-auto space-y-12" data-aos="fade-up">
@@ -296,7 +336,8 @@
         <div class="container mx-auto">
             <div class="text-center mb-20" data-aos="fade-up">
                 <h2 class="text-4xl md:text-5xl font-extrabold mb-4 relative inline-block section-title">Keahlian</h2>
-                <p class="text-gray-500 mt-6 max-w-xl mx-auto">Kombinasi kemampuan teknis dan interpersonal yang saya miliki.</p>
+                <p class="text-gray-500 mt-6 max-w-xl mx-auto">Kombinasi kemampuan teknis dan interpersonal yang saya
+                    miliki.</p>
             </div>
 
             <div class="max-w-4xl mx-auto" data-aos="fade-up">
@@ -352,7 +393,8 @@
     <section id="projects" class="py-32 px-4 md:px-8 lg:px-16 relative">
         <div class="container mx-auto">
             <div class="text-center mb-20" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 relative inline-block section-title">Proyek Unggulan</h2>
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 relative inline-block section-title">Proyek Unggulan
+                </h2>
                 <p class="text-gray-500 mt-6 max-w-xl mx-auto">Beberapa karya dan riset yang telah saya kembangkan.</p>
             </div>
 
@@ -367,7 +409,8 @@
     <section id="contact" class="py-32 px-4 md:px-8 lg:px-16 relative">
         <div class="container mx-auto">
             <div class="text-center mb-20" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 relative inline-block section-title">Mari Berkolaborasi</h2>
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 relative inline-block section-title">Mari
+                    Berkolaborasi</h2>
                 <p class="text-gray-500 mt-6 max-w-xl mx-auto">Terbuka untuk peluang baru dan diskusi teknologi.</p>
             </div>
 
@@ -376,31 +419,37 @@
                     <div>
                         <h3 class="text-3xl font-bold text-gray-900 mb-8">Kontak Saya</h3>
                         <div class="space-y-6">
-                            <a href="mailto:your.email@gmail.com" class="flex items-center gap-6 p-6 rounded-3xl hover:bg-primary/5 transition-all group">
-                                <div class="w-14 h-14 bg-primary/10 flex items-center justify-center rounded-2xl text-primary group-hover:scale-110 transition-transform">
+                            <a href="mailto:joshua.setiawan123@gmail.com"
+                                class="flex items-center gap-6 p-6 rounded-3xl hover:bg-primary/5 transition-all group">
+                                <div
+                                    class="w-14 h-14 bg-primary/10 flex items-center justify-center rounded-2xl text-primary group-hover:scale-110 transition-transform">
                                     <i class="fas fa-envelope text-2xl"></i>
                                 </div>
                                 <div>
                                     <div class="font-bold text-gray-900 mb-1">Email</div>
-                                    <div class="text-primary font-medium">your.email@gmail.com</div>
+                                    <div class="text-primary font-medium">joshua.setiawan123@gmail.com</div>
                                 </div>
                             </a>
-                            <a href="https://wa.me/628123456789" class="flex items-center gap-6 p-6 rounded-3xl hover:bg-green-500/5 transition-all group">
-                                <div class="w-14 h-14 bg-green-500/10 flex items-center justify-center rounded-2xl text-green-600 group-hover:scale-110 transition-transform">
+                            <a href="https://wa.me/6289655195863"
+                                class="flex items-center gap-6 p-6 rounded-3xl hover:bg-green-500/5 transition-all group">
+                                <div
+                                    class="w-14 h-14 bg-green-500/10 flex items-center justify-center rounded-2xl text-green-600 group-hover:scale-110 transition-transform">
                                     <i class="fab fa-whatsapp text-2xl"></i>
                                 </div>
                                 <div>
                                     <div class="font-bold text-gray-900 mb-1">WhatsApp</div>
-                                    <div class="text-green-600 font-medium">+62 812 3456 7890</div>
+                                    <div class="text-green-600 font-medium">+62 89655195863</div>
                                 </div>
                             </a>
-                            <a href="https://linkedin.com/in/yourprofile" class="flex items-center gap-6 p-6 rounded-3xl hover:bg-blue-600/5 transition-all group">
-                                <div class="w-14 h-14 bg-blue-600/10 flex items-center justify-center rounded-2xl text-blue-600 group-hover:scale-110 transition-transform">
+                            <a href="https://linkedin.com/in/joshuabanjarnahor"
+                                class="flex items-center gap-6 p-6 rounded-3xl hover:bg-blue-600/5 transition-all group">
+                                <div
+                                    class="w-14 h-14 bg-blue-600/10 flex items-center justify-center rounded-2xl text-blue-600 group-hover:scale-110 transition-transform">
                                     <i class="fab fa-linkedin text-2xl"></i>
                                 </div>
                                 <div>
                                     <div class="font-bold text-gray-900 mb-1">LinkedIn</div>
-                                    <div class="text-blue-600 font-medium">linkedin.com/in/yourprofile</div>
+                                    <div class="text-blue-600 font-medium">linkedin.com/in/joshuabanjarnahor</div>
                                 </div>
                             </a>
                         </div>
@@ -409,10 +458,14 @@
                     <div>
                         <h3 class="text-3xl font-bold text-gray-900 mb-8">Pesan Langsung</h3>
                         <form class="space-y-4">
-                            <input type="text" placeholder="Nama Lengkap" class="w-full p-5 bg-white/50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all">
-                            <input type="email" placeholder="Email" class="w-full p-5 bg-white/50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all">
-                            <textarea rows="4" placeholder="Pesan Anda..." class="w-full p-5 bg-white/50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"></textarea>
-                            <button type="submit" class="w-full py-5 bg-primary text-white font-bold rounded-2xl hover:shadow-lg hover:-translate-y-1 transition-all">
+                            <input type="text" placeholder="Nama Lengkap"
+                                class="w-full p-5 bg-white/50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all">
+                            <input type="email" placeholder="Email"
+                                class="w-full p-5 bg-white/50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all">
+                            <textarea rows="4" placeholder="Pesan Anda..."
+                                class="w-full p-5 bg-white/50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"></textarea>
+                            <button type="submit"
+                                class="w-full py-5 bg-primary text-white font-bold rounded-2xl hover:shadow-lg hover:-translate-y-1 transition-all">
                                 <i class="fas fa-paper-plane mr-2"></i> Kirim Pesan
                             </button>
                         </form>
@@ -427,7 +480,9 @@
     </section>
 
     <!-- BACK TO TOP -->
-    <button onclick="window.scrollTo({top: 0})" class="fixed bottom-10 right-10 w-16 h-16 glass rounded-full text-2xl flex items-center justify-center z-50 text-primary shadow-2xl hover:scale-110 transition-all opacity-0 invisible translate-y-10" id="backToTop">
+    <button onclick="window.scrollTo({top: 0})"
+        class="fixed bottom-10 right-10 w-16 h-16 glass rounded-full text-2xl flex items-center justify-center z-50 text-primary shadow-2xl hover:scale-110 transition-all opacity-0 invisible translate-y-10"
+        id="backToTop">
         <i class="fas fa-arrow-up"></i>
     </button>
 
@@ -493,7 +548,7 @@
                             link.classList.add('active-nav');
                         }
                     });
-                    
+
                     // Back to top visibility
                     const btn = document.getElementById('backToTop');
                     if (window.scrollY > 500) {
@@ -503,7 +558,7 @@
                         btn.classList.add('opacity-0', 'invisible', 'translate-y-10');
                         btn.classList.remove('opacity-100', 'visible', 'translate-y-0');
                     }
-                    
+
                     isScrolling = false;
                 });
                 isScrolling = true;
@@ -511,4 +566,5 @@
         });
     </script>
 </body>
+
 </html>
