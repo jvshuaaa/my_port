@@ -261,9 +261,10 @@ INSERT INTO organization (nama, institusi, jabatan, periode_mulai, periode_seles
  'fa-users', 2);
 
 -- Projects
-INSERT INTO projects (judul, deskripsi, teknologi, urutan) VALUES
-('Sistem Deteksi Emosi', 'Sistem klasifikasi teks menggunakan model LSTM untuk mendeteksi emosi dari teks', ARRAY['Python', 'TensorFlow', 'LSTM', 'NLP'], 1),
-('Portfolio Website', 'Website portfolio pribadi dengan integrasi database Supabase', ARRAY['HTML', 'Tailwind CSS', 'JavaScript', 'Supabase'], 2);
+INSERT INTO projects (judul, deskripsi, teknologi, link_demo, link_github, urutan) VALUES
+('KLIP', 'Portal Integrity Hub untuk Direktorat Kepatuhan Internal, Direktorat Jenderal Pemasyarakatan — platform konsultasi dan pelaporan terkait tugas serta fungsi kepatuhan internal.', ARRAY['Laravel', 'PHP', 'JavaScript', 'MySQL'], 'https://github.com/jvshuaaa/KLIP', 'https://github.com/jvshuaaa/KLIP', 0),
+('Sistem Deteksi Emosi', 'Sistem klasifikasi teks menggunakan model LSTM untuk mendeteksi emosi dari teks', ARRAY['Python', 'TensorFlow', 'LSTM', 'NLP'], NULL, NULL, 1),
+('Portfolio Website', 'Website portfolio pribadi dengan integrasi database Supabase untuk menampilkan profil, pengalaman, dan proyek secara dinamis.', ARRAY['HTML', 'Tailwind CSS', 'JavaScript', 'Supabase'], 'https://github.com/jvshuaaa/my_port', 'https://github.com/jvshuaaa/my_port', 2);
 
 -- Success message
 SELECT 'Database schema and sample data created successfully!' as status;

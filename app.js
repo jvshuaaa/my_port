@@ -11,6 +11,26 @@ import {
     checkConnection 
 } from './api.js';
 
+// Proyek unggulan (ditampilkan jika belum ada di Supabase)
+const FEATURED_PROJECTS = [
+    {
+        judul: 'KLIP',
+        deskripsi: 'Portal Integrity Hub untuk Direktorat Kepatuhan Internal, Direktorat Jenderal Pemasyarakatan — platform konsultasi dan pelaporan terkait tugas serta fungsi kepatuhan internal.',
+        teknologi: ['Laravel', 'PHP', 'JavaScript', 'MySQL'],
+        link_github: 'https://github.com/jvshuaaa/KLIP',
+        link_demo: 'https://github.com/jvshuaaa/KLIP',
+        urutan: 0
+    },
+    {
+        judul: 'Portfolio Website',
+        deskripsi: 'Website portfolio pribadi dengan integrasi database Supabase untuk menampilkan profil, pengalaman, dan proyek secara dinamis.',
+        teknologi: ['HTML', 'Tailwind CSS', 'JavaScript', 'Supabase'],
+        link_github: 'https://github.com/jvshuaaa/my_port',
+        link_demo: 'https://github.com/jvshuaaa/my_port',
+        urutan: 2
+    }
+];
+
 // =============================================
 // UTILITY FUNCTIONS
 // =============================================
@@ -453,14 +473,35 @@ async function renderOrganization() {
 }
 
 // 7. RENDER PROJECTS
+function getProjectIcon(judul) {
+    if (judul === 'KLIP') return 'fa-shield-halved';
+    if (judul === 'Sistem Deteksi Emosi') return 'fa-brain';
+    if (judul === 'Portfolio Website') return 'fa-id-card';
+    return 'fa-laptop-code';
+}
+
 async function renderProjects() {
-    const projects = await getProjects();
-    if (!projects || projects.length === 0) return;
+    const projects = await getProjects() || [];
+
+    // Gabungkan / perbarui proyek unggulan (link, deskripsi, dll.)
+    const merged = [...projects];
+    FEATURED_PROJECTS.forEach(featured => {
+        const idx = merged.findIndex(p => p.judul === featured.judul);
+        if (idx === -1) {
+            merged.push(featured);
+        } else {
+            merged[idx] = { ...merged[idx], ...featured };
+        }
+    });
+
+    if (merged.length === 0) return;
+
+    merged.sort((a, b) => (a.urutan ?? 99) - (b.urutan ?? 99));
 
     // Deduplicate
     const uniqueProjects = [];
     const seen = new Set();
-    projects.forEach(proj => {
+    merged.forEach(proj => {
         if (!seen.has(proj.judul)) {
             seen.add(proj.judul);
             uniqueProjects.push(proj);
@@ -474,6 +515,8 @@ async function renderProjects() {
 
     const html = uniqueProjects.map((proj, index) => {
         const color = colors[index % colors.length];
+        const projectLink = proj.link_demo || proj.link_github || '#';
+        const isGithub = projectLink.includes('github.com');
         const techs = proj.teknologi ? proj.teknologi.map(tech => `
             <span class="px-3 py-1 bg-gray-100 rounded-full text-sm font-bold text-gray-700">${tech}</span>
         `).join('') : '';
@@ -483,22 +526,28 @@ async function renderProjects() {
                 <div class="relative h-64 overflow-hidden rounded-[2rem] mb-8">
                     <div class="absolute inset-0 bg-gradient-to-br from-${color === 'blue' ? 'primary' : color === 'green' ? 'green-500' : 'secondary'}/20 to-transparent z-10"></div>
                     <div class="absolute inset-0 flex items-center justify-center bg-gray-100 group-hover:scale-110 transition-transform duration-700">
-                        <i class="fas ${proj.judul === 'KLIP' ? 'fa-folder-open' : 'fa-graduation-cap'} text-7xl text-${color === 'blue' ? 'primary' : color === 'green' ? 'green-600' : 'secondary'} opacity-40"></i>
+                        <i class="fas ${getProjectIcon(proj.judul)} text-7xl text-${color === 'blue' ? 'primary' : color === 'green' ? 'green-600' : 'secondary'} opacity-40"></i>
                     </div>
-                    <div class="absolute top-6 right-6 z-20">
-                        <div class="w-12 h-12 glass rounded-2xl flex items-center justify-center text-gray-900">
+                    ${isGithub ? `
+                    <a href="${projectLink}" target="_blank" rel="noopener noreferrer" class="absolute top-6 right-6 z-20">
+                        <div class="w-12 h-12 glass rounded-2xl flex items-center justify-center text-gray-900 hover:bg-white/90 transition-colors">
                             <i class="fab fa-github text-xl"></i>
                         </div>
-                    </div>
+                    </a>` : `
+                    <div class="absolute top-6 right-6 z-20">
+                        <div class="w-12 h-12 glass rounded-2xl flex items-center justify-center text-gray-900">
+                            <i class="fas fa-code text-xl"></i>
+                        </div>
+                    </div>`}
                 </div>
                 <div class="px-4 pb-4">
                     <div class="flex flex-wrap gap-2 mb-4">
                         ${techs}
                     </div>
                     <h3 class="text-2xl font-bold text-gray-900 mb-3">${proj.judul}</h3>
-                    <p class="text-gray-500 mb-8 line-clamp-2">${proj.deskripsi}</p>
-                    <a href="${proj.link_demo || '#'}" target="_blank" class="inline-flex items-center font-bold text-primary hover:gap-3 transition-all">
-                        Lihat Selengkapnya <i class="fas fa-arrow-right ml-2"></i>
+                    <p class="text-gray-500 mb-8 line-clamp-3">${proj.deskripsi}</p>
+                    <a href="${projectLink}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center font-bold text-primary hover:gap-3 transition-all">
+                        ${isGithub ? 'Lihat di GitHub' : 'Lihat Selengkapnya'} <i class="fas fa-arrow-right ml-2"></i>
                     </a>
                 </div>
             </div>
