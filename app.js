@@ -78,12 +78,47 @@ async function renderProfile() {
         return;
     }
 
-    // Update Hero
-    const heroName = document.querySelector('h1 span.text-gray-900');
-    if (heroName) heroName.textContent = profile.nama || 'Jojo';
+    // Update Hero and sidebar name
+    const heroName = document.getElementById('hero-name');
+    const sidebarName = document.getElementById('sidebar-profile-name');
+    const footerOwner = document.getElementById('footer-owner');
+    const sidebarEmail = document.getElementById('sidebar-email-link');
+    const sidebarWhatsapp = document.getElementById('sidebar-whatsapp-link');
+    const sidebarLinkedin = document.getElementById('sidebar-linkedin-link');
+    const sidebarGithub = document.getElementById('sidebar-github-link');
+    const aboutPhoneLink = document.getElementById('about-phone-link');
+    const aboutEmailLink = document.getElementById('about-email-link');
+    const aboutLinkedinLink = document.getElementById('about-linkedin-link');
+    const profileImg = document.getElementById('about-profile-img');
 
-    // Update title
-    document.title = `Portfolio - ${profile.nama} | IT Specialist`;
+    const nameValue = profile.nama || 'Jojo';
+    const waNumber = profile.whatsapp ? profile.whatsapp.replace(/\D/g, '') : '';
+    const linkedinUrl = profile.linkedin_url || '';
+
+    if (heroName) heroName.textContent = nameValue;
+    if (sidebarName) sidebarName.textContent = nameValue;
+    if (footerOwner) footerOwner.textContent = nameValue;
+
+    // Update title and meta description
+    document.title = `Portfolio - ${nameValue} | IT Specialist`;
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+        metaDescription.setAttribute('content', `Portofolio digital ${nameValue} — IT Specialist dengan fokus AI, Cybersecurity, dan proyek nyata.`);
+    }
+
+    // Update sidebar top links
+    if (sidebarEmail && profile.email) {
+        sidebarEmail.href = `mailto:${profile.email}`;
+    }
+    if (sidebarWhatsapp && waNumber) {
+        sidebarWhatsapp.href = `https://wa.me/${waNumber}`;
+    }
+    if (sidebarLinkedin && linkedinUrl) {
+        sidebarLinkedin.href = linkedinUrl;
+    }
+    if (sidebarGithub && profile.github_url) {
+        sidebarGithub.href = profile.github_url;
+    }
 
     // Update About section
     const aboutSummary = document.querySelector('#about p.text-lg');
@@ -99,23 +134,35 @@ async function renderProfile() {
     }
 
     const waLink = document.getElementById('contact-whatsapp');
-    if (waLink && profile.whatsapp) {
-        const waNumber = profile.whatsapp.replace(/\D/g, '');
+    if (waLink && waNumber) {
         waLink.href = `https://wa.me/${waNumber}`;
         waLink.textContent = profile.whatsapp;
     }
 
     const linkedinLink = document.getElementById('contact-linkedin');
-    if (linkedinLink && profile.linkedin_url) {
-        linkedinLink.href = profile.linkedin_url;
-        linkedinLink.textContent = profile.linkedin_url.replace('https://', '');
+    if (linkedinLink && linkedinUrl) {
+        linkedinLink.href = linkedinUrl;
+        linkedinLink.textContent = linkedinUrl.replace('https://', '');
+    }
+
+    // Update About section contact links
+    if (aboutPhoneLink && waNumber) {
+        aboutPhoneLink.href = `https://wa.me/${waNumber}`;
+        aboutPhoneLink.textContent = profile.whatsapp;
+    }
+    if (aboutEmailLink && profile.email) {
+        aboutEmailLink.href = `mailto:${profile.email}`;
+        aboutEmailLink.textContent = profile.email;
+    }
+    if (aboutLinkedinLink && linkedinUrl) {
+        aboutLinkedinLink.href = linkedinUrl;
+        aboutLinkedinLink.textContent = linkedinUrl.replace('https://', '');
     }
 
     // Update foto if exists
-    const profileImg = document.querySelector('#about img');
     if (profileImg && profile.foto_url) {
         profileImg.src = profile.foto_url;
-        profileImg.alt = `Foto ${profile.nama}`;
+        profileImg.alt = `Foto ${nameValue}`;
     }
 
     // Update CV download link
