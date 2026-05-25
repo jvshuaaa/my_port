@@ -182,13 +182,13 @@ USING (true);
 -- Profile
 INSERT INTO profile (nama, email, phone, alamat, summary, linkedin_url, whatsapp) 
 VALUES (
-    '[NAMA ANDA]',
-    'your.email@gmail.com',
-    '+62 812 3456 7890',
+    '[Joshua Setiawan Banjarnahor]',
+    'joshua.setiawan123@gmail.com',
+    '+62 896 5519 5863',
     'Indonesia',
     'Lulusan baru jurusan Teknik Informatika dari Universitas Indraprasta PGRI. Memiliki skill set teknis yang terasah melalui program MSIB batch 6 di Hacktiv8 dengan spesialisasi di bidang Artificial Intelligence dan Cybersecurity.',
-    'https://linkedin.com/in/yourprofile',
-    '+6281234567890'
+    'https://linkedin.com/in/joshuabanjarnahor',
+    '+6289655195863'
 ) ON CONFLICT DO NOTHING;
 
 -- Experience
