@@ -92,20 +92,20 @@ async function renderProfile() {
     }
 
     // Update contact info
-    const emailLink = document.querySelector('a[href^="mailto:"]');
+    const emailLink = document.getElementById('contact-email');
     if (emailLink && profile.email) {
         emailLink.href = `mailto:${profile.email}`;
         emailLink.textContent = profile.email;
     }
 
-    const waLink = document.querySelector('a[href^="https://wa.me"]');
+    const waLink = document.getElementById('contact-whatsapp');
     if (waLink && profile.whatsapp) {
         const waNumber = profile.whatsapp.replace(/\D/g, '');
         waLink.href = `https://wa.me/${waNumber}`;
         waLink.textContent = profile.whatsapp;
     }
 
-    const linkedinLink = document.querySelector('a[href^="https://linkedin.com"]');
+    const linkedinLink = document.getElementById('contact-linkedin');
     if (linkedinLink && profile.linkedin_url) {
         linkedinLink.href = profile.linkedin_url;
         linkedinLink.textContent = profile.linkedin_url.replace('https://', '');
@@ -151,32 +151,21 @@ async function renderExperience() {
 
     const container = document.querySelector('#experience .max-w-4xl');
     if (!container) return;
-
-    const colors = ['blue', 'purple', 'orange'];
     
     const html = uniqueExperiences.map((exp, index) => {
-        const color = colors[index % colors.length];
         const bullets = exp.bullets ? exp.bullets.map(bullet => `
-            <li class="flex items-start gap-4 text-gray-600">
-                <div class="w-3 h-3 ${getColorClass(color)} rounded-full mt-2 flex-shrink-0"></div>
-                ${bullet}
+            <li class="flex items-start gap-2 text-gray-600 text-sm">
+                <i class="fas fa-circle text-[6px] mt-2 text-[#149ddd] shrink-0"></i>
+                <span>${bullet}</span>
             </li>
         `).join('') : '';
 
         return `
-            <div class="glass-card p-10 rounded-[2.5rem]" data-aos="fade-up" data-aos-delay="${index * 100}">
-                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8">
-                    <div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3">${exp.posisi}</h3>
-                        <div class="flex items-center gap-4">
-                            <span class="${getTextColorClass(color)} font-extrabold text-lg">${exp.perusahaan}</span>
-                            <span class="px-3 py-1 bg-gray-100 rounded-full text-sm font-bold text-gray-500">
-                                ${formatDate(exp.periode_mulai)} - ${formatDate(exp.periode_selesai)}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <ul class="space-y-4 text-lg">
+            <div class="resume-item" data-aos="fade-up" data-aos-delay="${index * 100}">
+                <h4 class="text-gray-900">${exp.posisi}</h4>
+                <h5>${formatDate(exp.periode_mulai)} - ${formatDate(exp.periode_selesai)}</h5>
+                <p class="font-bold text-[#149ddd] mb-2">${exp.perusahaan}</p>
+                <ul class="space-y-2 list-none pl-0">
                     ${bullets}
                 </ul>
             </div>
@@ -207,20 +196,11 @@ async function renderEducation() {
     if (!container) return;
 
     const html = uniqueEducation.map((edu, index) => `
-        <div class="glass-card p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="${index * 100}">
-            <div class="flex items-start gap-6">
-                <div class="w-16 h-16 ${edu.institusi.includes('Universitas') ? 'bg-primary/10' : 'bg-green-100'} flex items-center justify-center rounded-2xl shrink-0">
-                    <i class="fas ${edu.institusi.includes('Universitas') ? 'fa-university' : 'fa-school'} ${edu.institusi.includes('Universitas') ? 'text-primary' : 'text-green-600'} text-2xl"></i>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-1">${edu.gelar}</h3>
-                    <p class="${edu.institusi.includes('Universitas') ? 'text-primary' : 'text-green-600'} font-bold mb-2">${edu.institusi}</p>
-                    <div class="flex items-center gap-3">
-                        <span class="text-gray-400 text-sm font-medium"><i class="far fa-calendar-alt mr-1"></i> ${formatDate(edu.periode_mulai)} - ${formatDate(edu.periode_selesai)}</span>
-                        ${edu.jurusan ? `<span class="w-1 h-1 bg-gray-300 rounded-full"></span><span class="text-gray-500 text-sm font-medium">Jurusan ${edu.jurusan}</span>` : ''}
-                    </div>
-                </div>
-            </div>
+        <div class="resume-item" data-aos="fade-up" data-aos-delay="${index * 100}">
+            <h4 class="text-gray-900">${edu.gelar}</h4>
+            <h5>${formatDate(edu.periode_mulai)} - ${formatDate(edu.periode_selesai)}</h5>
+            <p class="font-bold text-[#149ddd] mb-2">${edu.institusi}</p>
+            ${edu.jurusan ? `<p class="text-gray-600 text-sm italic">Jurusan: ${edu.jurusan}</p>` : ''}
         </div>
     `).join('');
 
@@ -246,32 +226,13 @@ async function renderCertifications() {
     const container = document.querySelector('#education .grid > div:last-child .glass');
     if (!container) return;
 
-    const iconMap = {
-        'Data Analyst': 'fa-certificate',
-        'Software Engineer': 'fa-certificate',
-        'Data Science': 'fa-certificate',
-        'Cyber Security': 'fa-shield-alt',
-        'Machine Learning': 'fa-brain',
-        'Front End': 'fa-certificate',
-        'MSIB': 'fa-award',
-        'TOEFL': 'fa-language',
-        'Digital Marketing': 'fa-certificate',
-        'Instalasi': 'fa-certificate'
-    };
-
     const html = `
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="space-y-4 mt-4">
             ${uniqueCerts.map((cert, index) => {
-                const icon = Object.entries(iconMap).find(([key, _]) => cert.nama.includes(key))?.[1] || 'fa-certificate';
                 return `
-                    <div class="flex items-center gap-4 p-4 rounded-2xl hover:bg-white/50 transition-all group" data-aos="fade-up" data-aos-delay="${index * 50}">
-                        <div class="w-10 h-10 ${getColorClass(cert.warna)}/10 flex items-center justify-center rounded-xl ${getTextColorClass(cert.warna)} group-hover:scale-110 transition-transform">
-                            <i class="fas ${icon} text-lg"></i>
-                        </div>
-                        <div>
-                            <p class="font-bold text-gray-900 leading-tight">${cert.nama}</p>
-                            <p class="text-gray-400 text-xs font-medium uppercase tracking-wider">${cert.lembaga}</p>
-                        </div>
+                    <div class="resume-item" data-aos="fade-up" data-aos-delay="${index * 50}">
+                        <h4 class="text-gray-900 text-base font-bold">${cert.nama}</h4>
+                        <p class="font-bold text-[#149ddd] text-xs uppercase tracking-wider">${cert.lembaga}</p>
                     </div>
                 `;
             }).join('')}
@@ -308,24 +269,24 @@ async function renderSkills() {
             container.innerHTML = `
                 <div class="grid md:grid-cols-2 gap-12">
                     <div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                            <span class="w-2 h-8 bg-primary rounded-full"></span> Produktivitas
+                        <h3 class="text-lg font-bold text-gray-900 mb-6 flex items-center gap-3">
+                            <span class="w-2 h-6 bg-[#149ddd] rounded-full"></span> Produktivitas
                         </h3>
-                        <div class="flex flex-wrap gap-3">
+                        <div class="flex flex-wrap gap-2.5">
                             ${officeSkills.map(skill => `
-                                <span class="px-5 py-2.5 bg-gray-50 text-gray-700 rounded-2xl font-bold text-sm border border-gray-100 hover:border-primary/30 transition-all cursor-default">
+                                <span class="skill-tag px-4 py-2 text-gray-700 rounded-lg text-xs font-bold transition-all cursor-default">
                                     ${skill.nama}
                                 </span>
                             `).join('')}
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                            <span class="w-2 h-8 bg-secondary rounded-full"></span> Teknologi
+                        <h3 class="text-lg font-bold text-gray-900 mb-6 flex items-center gap-3">
+                            <span class="w-2 h-6 bg-[#0563bb] rounded-full"></span> Teknologi
                         </h3>
-                        <div class="flex flex-wrap gap-3">
+                        <div class="flex flex-wrap gap-2.5">
                             ${techSkills.map(skill => `
-                                <span class="px-5 py-2.5 bg-primary/5 text-primary rounded-2xl font-bold text-sm border border-primary/10 hover:border-primary/30 transition-all cursor-default">
+                                <span class="skill-tag px-4 py-2 text-[#149ddd] rounded-lg text-xs font-bold transition-all cursor-default">
                                     ${skill.nama}
                                 </span>
                             `).join('')}
@@ -334,10 +295,10 @@ async function renderSkills() {
                 </div>
                 
                 <!-- Soft Skills -->
-                <div class="mt-16 pt-12 border-t border-gray-100">
-                    <h3 class="text-xl font-bold text-gray-900 mb-6">Soft Skills & Bahasa</h3>
-                    <div class="flex flex-wrap gap-3 mb-8" id="soft-skills-container"></div>
-                    <div class="flex flex-wrap gap-8" id="languages-container"></div>
+                <div class="mt-12 pt-8 border-t border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-900 mb-6">Soft Skills & Bahasa</h3>
+                    <div class="flex flex-wrap gap-2.5 mb-8" id="soft-skills-container"></div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="languages-container"></div>
                 </div>
             `;
             
@@ -354,8 +315,8 @@ async function renderSkills() {
                 });
 
                 softContainer.innerHTML = softSkills.map(skill => `
-                    <span class="px-6 py-3 bg-secondary/10 text-secondary rounded-full font-bold text-sm">
-                        <i class="fas fa-check-circle mr-2"></i> ${skill.nama}
+                    <span class="skill-tag px-4 py-2 text-[#0563bb] rounded-lg text-xs font-bold transition-all">
+                        <i class="fas fa-check-circle mr-2 text-[#149ddd]"></i> ${skill.nama}
                     </span>
                 `).join('');
             }
@@ -373,13 +334,13 @@ async function renderSkills() {
                 });
 
                 langContainer.innerHTML = languages.map((lang, index) => `
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl ${index === 0 ? 'bg-green-100 text-green-600' : 'bg-yellow-100 text-yellow-600'} flex items-center justify-center font-bold">
+                    <div class="flex items-center gap-3 p-3 bg-white border border-gray-100 rounded-lg shadow-sm hover:border-[#149ddd] transition-all">
+                        <div class="w-8 h-8 rounded-lg ${index === 0 ? 'bg-sky-50 text-[#149ddd]' : 'bg-blue-50 text-[#0563bb]'} flex items-center justify-center font-bold text-sm shrink-0">
                             ${lang.nama.charAt(0)}
                         </div>
                         <div>
-                            <p class="font-bold text-gray-900 leading-tight">${lang.nama}</p>
-                            <p class="text-gray-400 text-xs font-bold uppercase tracking-widest">${lang.level}</p>
+                            <p class="font-bold text-gray-900 leading-tight text-sm">${lang.nama}</p>
+                            <p class="text-gray-400 text-[10px] font-bold uppercase tracking-wider">${lang.level}</p>
                         </div>
                     </div>
                 `).join('');
@@ -410,52 +371,45 @@ async function renderOrganization() {
     if (!container) return;
 
     const html = uniqueOrgs.map((org, index) => {
-        // Split bullets untuk dua kolom jika jumlahnya banyak
         const bullets = org.bullets || [];
         const half = Math.ceil(bullets.length / 2);
         const col1 = bullets.slice(0, half);
         const col2 = bullets.slice(half);
 
         return `
-            <div class="glass-card p-10 rounded-[3rem] mb-10" data-aos="zoom-in" data-aos-delay="${index * 100}">
-                <div class="flex flex-col md:flex-row items-start gap-8">
-                    <div class="w-20 h-20 bg-primary/10 flex items-center justify-center rounded-[2rem] text-primary shrink-0">
-                        <i class="fas ${org.icon || 'fa-users'} text-3xl"></i>
+            <div class="project-card p-6 border border-gray-100 mb-6 bg-white" data-aos="zoom-in" data-aos-delay="${index * 100}">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 bg-blue-50 text-[#149ddd] flex items-center justify-center rounded-xl text-xl shrink-0">
+                        <i class="fas ${org.icon || 'fa-users'}"></i>
                     </div>
-                    <div class="flex-1 w-full">
-                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+                    <div class="flex-1 min-w-0">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
                             <div>
-                                <h3 class="text-2xl font-bold text-gray-900 mb-1">${org.nama}</h3>
-                                <p class="text-primary font-bold text-lg">${org.institusi || ''}</p>
+                                <h3 class="text-lg font-bold text-gray-900 truncate">${org.nama}</h3>
+                                <p class="text-[#149ddd] font-semibold text-sm">${org.institusi || ''}</p>
                             </div>
-                            <span class="px-4 py-2 bg-gray-100 rounded-full text-sm font-bold text-gray-500 w-fit">
+                            <span class="px-3 py-1 bg-slate-100 rounded text-xs font-semibold text-gray-500 w-fit shrink-0">
                                 ${formatDate(org.periode_mulai)} - ${formatDate(org.periode_selesai)}
                             </span>
                         </div>
-
-                        <div class="grid md:grid-cols-2 gap-10">
-                            <div class="space-y-4">
-                                <div class="flex items-center gap-3 text-gray-900 font-bold mb-4">
-                                    <span class="w-8 h-1 bg-primary rounded-full"></span> Tugas & Kontribusi
-                                </div>
-                                <ul class="space-y-3">
+                        <div class="grid md:grid-cols-2 gap-4 text-xs">
+                            <div>
+                                <div class="font-bold text-gray-900 mb-2 border-b pb-1">Tugas & Kontribusi</div>
+                                <ul class="space-y-2">
                                     ${col1.map(b => `
-                                        <li class="flex items-start gap-3 text-gray-500">
-                                            <i class="fas fa-check text-primary text-xs mt-1.5"></i>
+                                        <li class="flex items-start gap-2 text-gray-500">
+                                            <i class="fas fa-check text-[#149ddd] text-[10px] mt-1 shrink-0"></i>
                                             <span>${b}</span>
                                         </li>
                                     `).join('')}
                                 </ul>
                             </div>
-
-                            <div class="space-y-4">
-                                <div class="flex items-center gap-3 text-gray-900 font-bold mb-4">
-                                    <span class="w-8 h-1 bg-secondary rounded-full"></span> ${org.jabatan}
-                                </div>
-                                <ul class="space-y-3">
+                            <div>
+                                <div class="font-bold text-gray-900 mb-2 border-b pb-1">${org.jabatan}</div>
+                                <ul class="space-y-2">
                                     ${col2.map(b => `
-                                        <li class="flex items-start gap-3 text-gray-500">
-                                            <i class="fas fa-star text-secondary text-xs mt-1.5"></i>
+                                        <li class="flex items-start gap-2 text-gray-500">
+                                            <i class="fas fa-star text-amber-500 text-[10px] mt-1 shrink-0"></i>
                                             <span>${b}</span>
                                         </li>
                                     `).join('')}
@@ -483,7 +437,6 @@ function getProjectIcon(judul) {
 async function renderProjects() {
     const projects = await getProjects() || [];
 
-    // Gabungkan / perbarui proyek unggulan (link, deskripsi, dll.)
     const merged = [...projects];
     FEATURED_PROJECTS.forEach(featured => {
         const idx = merged.findIndex(p => p.judul === featured.judul);
@@ -498,7 +451,6 @@ async function renderProjects() {
 
     merged.sort((a, b) => (a.urutan ?? 99) - (b.urutan ?? 99));
 
-    // Deduplicate
     const uniqueProjects = [];
     const seen = new Set();
     merged.forEach(proj => {
@@ -511,44 +463,27 @@ async function renderProjects() {
     const container = document.querySelector('#projects .grid');
     if (!container) return;
 
-    const colors = ['blue', 'green', 'purple'];
-
     const html = uniqueProjects.map((proj, index) => {
-        const color = colors[index % colors.length];
         const projectLink = proj.link_demo || proj.link_github || '#';
         const isGithub = projectLink.includes('github.com');
-        const techs = proj.teknologi ? proj.teknologi.map(tech => `
-            <span class="px-3 py-1 bg-gray-100 rounded-full text-sm font-bold text-gray-700">${tech}</span>
-        `).join('') : '';
 
         return `
-            <div class="glass-card p-4 rounded-[2.5rem] group" data-aos="fade-up" data-aos-delay="${index * 100}">
-                <div class="relative h-64 overflow-hidden rounded-[2rem] mb-8">
-                    <div class="absolute inset-0 bg-gradient-to-br from-${color === 'blue' ? 'primary' : color === 'green' ? 'green-500' : 'secondary'}/20 to-transparent z-10"></div>
-                    <div class="absolute inset-0 flex items-center justify-center bg-gray-100 group-hover:scale-110 transition-transform duration-700">
-                        <i class="fas ${getProjectIcon(proj.judul)} text-7xl text-${color === 'blue' ? 'primary' : color === 'green' ? 'green-600' : 'secondary'} opacity-40"></i>
+            <div class="project-card p-4 group" data-aos="fade-up" data-aos-delay="${index * 100}">
+                <div class="relative h-48 overflow-hidden rounded-lg mb-4 bg-slate-50 flex items-center justify-center border border-gray-100">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 flex items-center justify-center gap-4">
+                        <a href="${projectLink}" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-[#149ddd] text-white rounded-full flex items-center justify-center hover:bg-[#0563bb] transition-colors"><i class="fas fa-link"></i></a>
+                        ${isGithub ? `<a href="${proj.link_github}" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-slate-800 text-white rounded-full flex items-center justify-center hover:bg-black transition-colors"><i class="fab fa-github"></i></a>` : ''}
                     </div>
-                    ${isGithub ? `
-                    <a href="${projectLink}" target="_blank" rel="noopener noreferrer" class="absolute top-6 right-6 z-20">
-                        <div class="w-12 h-12 glass rounded-2xl flex items-center justify-center text-gray-900 hover:bg-white/90 transition-colors">
-                            <i class="fab fa-github text-xl"></i>
-                        </div>
-                    </a>` : `
-                    <div class="absolute top-6 right-6 z-20">
-                        <div class="w-12 h-12 glass rounded-2xl flex items-center justify-center text-gray-900">
-                            <i class="fas fa-code text-xl"></i>
-                        </div>
-                    </div>`}
+                    <i class="fas ${getProjectIcon(proj.judul)} text-5xl text-[#149ddd] opacity-60 group-hover:scale-110 transition-transform duration-500"></i>
                 </div>
-                <div class="px-4 pb-4">
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        ${techs}
+                <div class="px-2">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">${proj.judul}</h3>
+                    <p class="text-gray-500 text-sm mb-4 line-clamp-3 leading-relaxed">${proj.deskripsi}</p>
+                    <div class="flex flex-wrap gap-1.5 mb-4">
+                        ${proj.teknologi ? proj.teknologi.map(tech => `
+                            <span class="px-2.5 py-1 bg-slate-50 border border-gray-100 text-xs font-bold text-gray-600 rounded">${tech}</span>
+                        `).join('') : ''}
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-3">${proj.judul}</h3>
-                    <p class="text-gray-500 mb-8 line-clamp-3">${proj.deskripsi}</p>
-                    <a href="${projectLink}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center font-bold text-primary hover:gap-3 transition-all">
-                        ${isGithub ? 'Lihat di GitHub' : 'Lihat Selengkapnya'} <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
                 </div>
             </div>
         `;

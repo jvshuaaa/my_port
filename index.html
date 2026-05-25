@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Joshua Setiawan Banjarnahor | IT Specialist</title>
+    <meta name="description" content="Portofolio digital Joshua Setiawan — IT Specialist dengan fokus AI, Cybersecurity, dan proyek nyata." />
+    <title>Portofolio - Joshua Setiawan Banjarnahor | IT Specialist</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -17,31 +18,23 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#4F46E5', // Indigo
-                        secondary: '#0EA5E9', // Sky
-                        accent: '#F43F5E', // Rose
+                        primary: '#149ddd', // iPortfolio Blue
+                        secondary: '#0563bb', // Alternate Blue
+                        accent: '#2c3e50', // Slate/Dark Blue
+                        darkBg: '#040b14', // Sidebar Dark Background
+                        navyText: '#172554',
                     },
                     backdropBlur: {
                         xs: '2px',
                     },
                     animation: {
-                        'blob': 'blob 7s infinite',
                         'float': 'float 3s ease-in-out infinite',
                     },
                     keyframes: {
-                        blob: {
-                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
-                        },
                         float: {
                             '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
+                            '50%': { transform: 'translateY(-5px)' },
                         }
-                    },
-                    willChange: {
-                        'transform': 'transform',
                     }
                 }
             }
@@ -51,64 +44,15 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
-        :root {
-            --glass-bg: rgba(255, 255, 255, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.5);
-        }
-
         * {
             scroll-behavior: smooth;
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #fdfdfd;
-            overflow-x: hidden;
-            color: #1a1a1a;
-            position: relative;
-        }
-
-        /* Mesh Background */
-        .mesh-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background-color: #fdfdfd;
-            background-image:
-                radial-gradient(at 0% 0%, hsla(253, 16%, 95%, 1) 0, transparent 50%),
-                radial-gradient(at 50% 0%, hsla(225, 39%, 95%, 1) 0, transparent 50%),
-                radial-gradient(at 100% 0%, hsla(339, 49%, 95%, 1) 0, transparent 50%);
-            opacity: 0.8;
-        }
-
-        .glass {
-            background: rgba(255, 255, 255, 0.95);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
-        }
-
-        .glass-card {
             background: #ffffff;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-        }
-
-        .glass-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.85);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
-            border-color: rgba(79, 70, 229, 0.2);
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, #4F46E5 0%, #0EA5E9 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #272829;
+            overflow-x: hidden;
         }
 
         h1,
@@ -118,34 +62,98 @@
         h5,
         h6 {
             font-family: 'Outfit', sans-serif;
+            color: #172554;
         }
 
         .section-title::after {
             content: '';
             position: absolute;
             bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 4px;
-            background: linear-gradient(90deg, #4F46E5, #0EA5E9);
-            border-radius: 10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #149ddd;
         }
 
-        /* Nav Floating */
-        .nav-floating {
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: fit-content;
-            border-radius: 100px;
-            padding: 8px 24px;
+        /* Sidebar Styling */
+        .sidebar-link.active, .sidebar-link:hover {
+            color: #fff !important;
+        }
+        .sidebar-link.active i, .sidebar-link:hover i {
+            color: #149ddd !important;
         }
 
-        .active-nav {
-            color: #4F46E5 !important;
-            background: rgba(79, 70, 229, 0.1);
-            border-radius: 100px;
+        /* Resume Timeline Styling */
+        .resume-title {
+            font-size: 26px;
+            font-weight: 700;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            color: #050d18;
+        }
+        .resume-item {
+            padding: 0 0 20px 20px;
+            margin-top: -2px;
+            border-left: 2px solid #1f5297;
+            position: relative;
+        }
+        .resume-item::before {
+            content: "";
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-radius: 50px;
+            left: -9px;
+            top: 0;
+            background: #fff;
+            border: 2px solid #1f5297;
+            transition: all 0.3s ease-in-out;
+        }
+        .resume-item:hover::before {
+            background: #149ddd;
+        }
+        .resume-item h4 {
+            line-height: 18px;
+            font-size: 18px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-family: 'Outfit', sans-serif;
+            color: #050d18;
+            margin-bottom: 10px;
+        }
+        .resume-item h5 {
+            font-size: 13px;
+            background: #f2f9f8;
+            padding: 5px 15px;
+            display: inline-block;
+            font-weight: 600;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            color: #1f5297;
+        }
+
+        /* Dynamic Tags & Cards to match iPortfolio Vibe */
+        .skill-tag {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        .skill-tag:hover {
+            border-color: #149ddd;
+            background-color: #f0f9ff;
+            transform: translateY(-2px);
+        }
+
+        .project-card {
+            background: #fff;
+            box-shadow: 0px 0 30px rgba(4, 11, 20, 0.08);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 10px 30px rgba(4, 11, 20, 0.15);
         }
 
         /* Custom Scrollbar */
@@ -163,185 +171,244 @@
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: #4F46E5;
+            background: #149ddd;
         }
     </style>
 </head>
 
-<body class="overflow-x-hidden">
-    <!-- Mesh Background -->
-    <div class="mesh-bg"></div>
+<body class="overflow-x-hidden bg-white">
+    <!-- Mobile Nav Toggle Button -->
+    <button id="mobile-nav-toggle" class="fixed right-4 top-4 z-[9998] w-10 h-10 rounded-full bg-[#149ddd] text-white flex items-center justify-center text-xl cursor-pointer md:hidden border-none focus:outline-none shadow-md">
+        <i class="fas fa-bars"></i>
+    </button>
 
-    <!-- Decorative Blobs -->
-    <div
-        class="fixed top-0 -left-4 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply opacity-10 animate-blob [will-change:transform]">
-    </div>
-    <div
-        class="fixed top-0 -right-4 w-72 h-72 bg-yellow-200 rounded-full mix-blend-multiply opacity-10 animate-blob animation-delay-2000 [will-change:transform]">
-    </div>
-    <div
-        class="fixed -bottom-8 left-20 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply opacity-10 animate-blob animation-delay-4000 [will-change:transform]">
-    </div>
-    <!-- NAVIGATION BAR - Desktop: Top, Mobile: Left Side -->
-    <!-- Desktop Navbar -->
-    <nav class="fixed nav-floating glass z-50 hidden md:flex items-center justify-center">
-        <div class="flex items-center gap-1">
-            <a href="#"
-                class="px-5 py-2 text-sm font-bold text-gray-600 hover:text-primary transition-all rounded-full active-nav">Home</a>
-            <a href="#about"
-                class="px-5 py-2 text-sm font-bold text-gray-600 hover:text-primary transition-all rounded-full">Profile</a>
-            <a href="#experience"
-                class="px-5 py-2 text-sm font-bold text-gray-600 hover:text-primary transition-all rounded-full">Experience</a>
-            <a href="#skills"
-                class="px-5 py-2 text-sm font-bold text-gray-600 hover:text-primary transition-all rounded-full">Skills</a>
-            <a href="#projects"
-                class="px-5 py-2 text-sm font-bold text-gray-600 hover:text-primary transition-all rounded-full">Projects</a>
-            <a href="#contact"
-                class="px-5 py-2 text-sm font-bold text-gray-600 hover:text-primary transition-all rounded-full">Contact</a>
+    <!-- Header Sidebar -->
+    <header id="header" class="fixed top-0 left-0 bottom-0 z-[997] w-[300px] bg-[#040b14] overflow-y-auto transition-all duration-500 md:translate-x-0 -translate-x-[300px] flex flex-col justify-between py-8 px-6 text-white select-none">
+        <div>
+            <!-- Profile Info -->
+            <div class="text-center py-4">
+                <div class="relative w-[120px] h-[120px] mx-auto rounded-full border-8 border-[#2c2f3f] overflow-hidden group">
+                    <img src="https://lh3.googleusercontent.com/d/1tLFqHq34Wu7CJHmPxoLIzRFWUT3VL3wy=w800" alt="Joshua Setiawan Banjarnahor"
+                        class="w-full h-full object-cover rounded-full"
+                        onerror="this.src='https://ui-avatars.com/api/?name=Joshua+Setiawan&background=149ddd&color=fff&size=512'">
+                </div>
+                <h1 class="text-2xl font-bold mt-4 tracking-tight"><a href="#" class="text-white hover:text-white transition-colors">Joshua Setiawan</a></h1>
+                <div class="flex justify-center gap-2 mt-4">
+                    <a href="mailto:joshua.setiawan123@gmail.com" class="w-9 h-9 rounded-full bg-[#212431] text-white flex items-center justify-center hover:bg-[#149ddd] hover:text-white transition-all duration-300" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://wa.me/6289655195863" class="w-9 h-9 rounded-full bg-[#212431] text-white flex items-center justify-center hover:bg-[#149ddd] hover:text-white transition-all duration-300" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://linkedin.com/in/joshuabanjarnahor" class="w-9 h-9 rounded-full bg-[#212431] text-white flex items-center justify-center hover:bg-[#149ddd] hover:text-white transition-all duration-300" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/jvshuaaa" class="w-9 h-9 rounded-full bg-[#212431] text-white flex items-center justify-center hover:bg-[#149ddd] hover:text-white transition-all duration-300" title="GitHub"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+
+            <!-- Sidebar Navigation Menu -->
+            <nav id="sidebar-nav" class="mt-8">
+                <ul class="space-y-4">
+                    <li>
+                        <a href="#" class="sidebar-link active flex items-center gap-3 text-[#a8a9b4] hover:text-white transition-all duration-300 text-sm font-medium py-1">
+                            <i class="fas fa-home text-lg w-6 text-center text-[#a8a9b4] transition-colors"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#about" class="sidebar-link flex items-center gap-3 text-[#a8a9b4] hover:text-white transition-all duration-300 text-sm font-medium py-1">
+                            <i class="fas fa-user text-lg w-6 text-center text-[#a8a9b4] transition-colors"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#resume" class="sidebar-link flex items-center gap-3 text-[#a8a9b4] hover:text-white transition-all duration-300 text-sm font-medium py-1">
+                            <i class="fas fa-file-alt text-lg w-6 text-center text-[#a8a9b4] transition-colors"></i>
+                            <span>Resume</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#skills" class="sidebar-link flex items-center gap-3 text-[#a8a9b4] hover:text-white transition-all duration-300 text-sm font-medium py-1">
+                            <i class="fas fa-brain text-lg w-6 text-center text-[#a8a9b4] transition-colors"></i>
+                            <span>Skills</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#projects" class="sidebar-link flex items-center gap-3 text-[#a8a9b4] hover:text-white transition-all duration-300 text-sm font-medium py-1">
+                            <i class="fas fa-folder-open text-lg w-6 text-center text-[#a8a9b4] transition-colors"></i>
+                            <span>Projects</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#organization" class="sidebar-link flex items-center gap-3 text-[#a8a9b4] hover:text-white transition-all duration-300 text-sm font-medium py-1">
+                            <i class="fas fa-users text-lg w-6 text-center text-[#a8a9b4] transition-colors"></i>
+                            <span>Organization</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contact" class="sidebar-link flex items-center gap-3 text-[#a8a9b4] hover:text-white transition-all duration-300 text-sm font-medium py-1">
+                            <i class="fas fa-envelope text-lg w-6 text-center text-[#a8a9b4] transition-colors"></i>
+                            <span>Contact</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-    </nav>
 
-    <!-- Mobile Navbar (Bottom) -->
-    <nav
-        class="fixed bottom-6 left-1/2 -translate-x-1/2 glass z-50 px-6 py-3 rounded-full flex items-center gap-8 md:hidden">
-        <a href="#" class="text-primary"><i class="fas fa-home text-lg"></i></a>
-        <a href="#about" class="text-gray-500"><i class="fas fa-user text-lg"></i></a>
-        <a href="#experience" class="text-gray-500"><i class="fas fa-briefcase text-lg"></i></a>
-        <a href="#projects" class="text-gray-500"><i class="fas fa-project-diagram text-lg"></i></a>
-        <a href="#contact" class="text-gray-500"><i class="fas fa-envelope text-lg"></i></a>
-    </nav>
+        <!-- Sidebar Footer -->
+        <div class="text-center text-xs text-[#a8a9b4] border-t border-[#1f2235] pt-4 mt-8">
+            <p>&copy; Copyright <strong class="text-white">iPortfolio</strong></p>
+            <p class="mt-1 text-[10px]">Designed by <a href="https://bootstrapmade.com/" target="_blank" class="text-[#149ddd] hover:underline">BootstrapMade</a></p>
+        </div>
+    </header>
 
-    <!-- HERO SECTION -->
-    <section class="min-h-screen flex items-center justify-center pt-20 pb-20 px-4 relative">
-        <div class="container mx-auto text-center z-10 max-w-5xl" data-aos="fade-up" data-aos-duration="1000">
-            <div class="glass rounded-[3rem] p-12 md:p-24 shadow-2xl relative overflow-hidden">
-                <!-- Background Decoration in Hero -->
-                <div class="absolute -top-20 -right-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
-                <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-secondary/10 rounded-full blur-3xl"></div>
+    <!-- Main Content Wrapper -->
+    <main id="main" class="md:ml-[300px] transition-all duration-500">
 
-                <span
-                    class="inline-block px-4 py-1.5 mb-6 text-sm font-bold tracking-wider text-primary uppercase bg-primary/10 rounded-full">
-                    Available for Work
-                </span>
-
-                <h1 class="text-5xl md:text-8xl font-extrabold mb-8 leading-tight">
-                    Hi, Saya <br />
-                    <span class="gradient-text">Joshua Setiawan</span>
+        <!-- HERO SECTION -->
+        <section id="hero" class="relative w-full h-screen bg-cover bg-center flex flex-col justify-center px-6 md:px-20" style="background-image: linear-gradient(rgba(4, 11, 22, 0.6), rgba(4, 11, 22, 0.6)), url('https://images.unsplash.com/photo-1473186578172-c141e6798cf4?q=80&w=1920');">
+            <div class="z-10 max-w-xl" data-aos="fade-up" data-aos-duration="1000">
+                <h1 class="text-white text-4xl md:text-6xl font-extrabold leading-none tracking-tight mb-4">
+                    <span class="text-gray-900 text-white">Joshua Setiawan</span>
                 </h1>
-
-                <p class="text-xl md:text-2xl text-gray-500 mb-12 max-w-2xl mx-auto leading-relaxed">
-                    Lulusan Teknik Informatika yang berfokus pada
-                    <span class="font-bold text-gray-900 border-b-2 border-primary/30">AI & Cybersecurity</span>.
-                    Berdedikasi untuk membangun solusi digital yang aman dan cerdas.
+                <p class="text-white text-xl md:text-3xl font-medium mb-8">
+                    I'm <span id="typed" class="text-[#149ddd] font-semibold border-r-2 border-[#149ddd] animate-pulse"></span>
                 </p>
-
-                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                    <a href="https://drive.google.com/uc?export=download&id=1aCo-5DkJf959h2KXn2GhvAad9uW_6lqE"
-                        target="_blank"
-                        class="px-10 py-5 bg-primary text-white rounded-2xl font-bold text-lg hover:shadow-[0_20px_40px_rgba(79,70,229,0.3)] hover:-translate-y-1 transition-all w-full sm:w-auto">
-                        <i class="fas fa-file-download mr-2"></i> Download CV
+                <div class="flex flex-wrap gap-4">
+                    <a href="#projects" class="px-6 py-3 bg-[#149ddd] text-white hover:bg-[#0563bb] rounded-md font-semibold hover:shadow-lg transition-all duration-300">
+                        <i class="fas fa-folder-open mr-2"></i> Lihat Proyek
                     </a>
-                    <a href="#contact"
-                        class="px-10 py-5 bg-white text-primary border-2 border-primary/20 rounded-2xl font-bold text-lg hover:bg-primary/5 hover:-translate-y-1 transition-all w-full sm:w-auto">
+                    <a href="#contact" class="px-6 py-3 bg-transparent text-white border-2 border-white/40 hover:border-white hover:bg-white/10 rounded-md font-semibold transition-all duration-300">
                         Hubungi Saya
                     </a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
     <!-- ABOUT SECTION -->
-    <section id="about" class="py-32 px-4 md:px-8 lg:px-16 relative overflow-hidden">
-        <div class="container mx-auto">
-            <div class="text-center mb-20" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 relative inline-block section-title">Tentang Saya
-                </h2>
-                <p class="text-gray-500 mt-6 max-w-xl mx-auto">Mengenal lebih dekat perjalanan profesional dan akademik
-                    saya.</p>
+    <section id="about" class="py-20 px-6 md:px-12 bg-white relative overflow-hidden border-b border-gray-100">
+        <div class="container mx-auto max-w-5xl">
+            <div class="mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-4 relative inline-block section-title text-[#172554]">Tentang Saya</h2>
+                <p class="text-gray-500 mt-6 max-w-2xl leading-relaxed">Mengenal lebih dekat perjalanan profesional, akademik, serta kontribusi saya di dunia teknologi informasi.</p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div data-aos="fade-right">
-                    <p class="text-xl text-gray-600 leading-relaxed mb-8">
-                        Lulusan <strong class="text-primary">Teknik Informatika</strong> dari Universitas Indraprasta
-                        PGRI.
-                        Memiliki spesialisasi di bidang <strong class="text-secondary">Artificial Intelligence</strong>
-                        dan <strong class="text-accent">Cybersecurity</strong>.
-                    </p>
-                    <p class="text-xl text-gray-600 leading-relaxed mb-10">
-                        Berpengalaman dalam mengembangkan solusi teknologi informasi dan selalu antusias untuk
-                        mempelajari inovasi terbaru di dunia digital.
-                    </p>
-                    <div class="grid grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div class="glass-card p-6 rounded-3xl text-center">
-                            <div
-                                class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 mx-auto text-primary">
-                                <i class="fas fa-graduation-cap text-xl"></i>
-                            </div>
-                            <div class="text-2xl font-bold text-gray-900 mb-1">S.Kom</div>
-                            <div class="text-xs text-gray-500 uppercase tracking-wider font-bold">Degree</div>
-                        </div>
-                        <div class="glass-card p-6 rounded-3xl text-center">
-                            <div
-                                class="w-12 h-12 rounded-2xl bg-secondary/10 flex items-center justify-center mb-4 mx-auto text-secondary">
-                                <i class="fas fa-certificate text-xl"></i>
-                            </div>
-                            <div class="text-2xl font-bold text-gray-900 mb-1">10+</div>
-                            <div class="text-xs text-gray-500 uppercase tracking-wider font-bold">Certs</div>
-                        </div>
-                        <div class="glass-card p-6 rounded-3xl text-center">
-                            <div
-                                class="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center mb-4 mx-auto text-accent">
-                                <i class="fas fa-briefcase text-xl"></i>
-                            </div>
-                            <div class="text-2xl font-bold text-gray-900 mb-1">3</div>
-                            <div class="text-xs text-gray-500 uppercase tracking-wider font-bold">Experience</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative" data-aos="fade-left">
-                    <div
-                        class="absolute -inset-4 bg-gradient-to-tr from-primary to-secondary rounded-[3rem] blur-2xl opacity-20">
-                    </div>
-                    <div class="glass-card p-4 rounded-[3rem] relative">
+            <div class="grid md:grid-cols-3 gap-8 items-start">
+                <!-- Left Image Column (1/3) -->
+                <div class="md:col-span-1" data-aos="fade-right">
+                    <div class="relative overflow-hidden rounded-xl shadow-md border border-gray-100">
                         <img src="https://lh3.googleusercontent.com/d/1tLFqHq34Wu7CJHmPxoLIzRFWUT3VL3wy=w800"
                             alt="Joshua Setiawan Banjarnahor"
-                            class="w-full h-[500px] object-cover rounded-[2.5rem] shadow-xl"
-                            onerror="this.src='https://ui-avatars.com/api/?name=Joshua+Setiawan&background=4F46E5&color=fff&size=512'">
+                            class="w-full h-auto object-cover rounded-xl"
+                            onerror="this.src='https://ui-avatars.com/api/?name=Joshua+Setiawan&background=149ddd&color=fff&size=512'">
+                    </div>
+                </div>
+
+                <!-- Right Profile Details Column (2/3) -->
+                <div class="md:col-span-2" data-aos="fade-left">
+                    <h3 class="text-2xl font-bold text-[#172554] mb-3">IT Specialist & AI/Cybersecurity Enthusiast</h3>
+                    <p class="text-lg italic text-[#149ddd] mb-6 font-medium">Lulusan Teknik Informatika, Universitas Indraprasta PGRI.</p>
+                    
+                    <!-- Dynamic Summary placeholder (loaded by app.js) -->
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                        Berpengalaman dalam mengembangkan solusi teknologi informasi dan selalu antusias untuk mempelajari inovasi terbaru di dunia digital khususnya Artificial Intelligence dan Cybersecurity.
+                    </p>
+
+                    <!-- Key Profile Details Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6 text-sm border-t border-gray-100 pt-6">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-chevron-right text-[#149ddd] text-xs shrink-0"></i>
+                            <strong class="text-gray-700 min-w-[80px]">Gelar:</strong> 
+                            <span class="text-gray-600">S.Kom (Sarjana Komputer)</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-chevron-right text-[#149ddd] text-xs shrink-0"></i>
+                            <strong class="text-gray-700 min-w-[80px]">Kota:</strong> 
+                            <span class="text-gray-600">Jakarta, Indonesia</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-chevron-right text-[#149ddd] text-xs shrink-0"></i>
+                            <strong class="text-gray-700 min-w-[80px]">Telepon:</strong> 
+                            <a href="https://wa.me/6289655195863" class="text-gray-600 hover:text-[#149ddd] transition-colors">+62 896 5519 5863</a>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-chevron-right text-[#149ddd] text-xs shrink-0"></i>
+                            <strong class="text-gray-700 min-w-[80px]">Email:</strong> 
+                            <a href="mailto:joshua.setiawan123@gmail.com" class="text-gray-600 hover:text-[#149ddd] transition-colors">joshua.setiawan123@gmail.com</a>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-chevron-right text-[#149ddd] text-xs shrink-0"></i>
+                            <strong class="text-gray-700 min-w-[80px]">LinkedIn:</strong> 
+                            <a href="https://linkedin.com/in/joshuabanjarnahor" class="text-gray-600 hover:text-[#149ddd] transition-colors">linkedin.com/in/joshuabanjarnahor</a>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-chevron-right text-[#149ddd] text-xs shrink-0"></i>
+                            <strong class="text-gray-700 min-w-[80px]">Freelance:</strong> 
+                            <span class="text-gray-600">Tersedia</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- EXPERIENCE SECTION -->
-    <section id="experience" class="py-32 px-4 md:px-8 lg:px-16 relative">
-        <div class="container mx-auto">
-            <div class="text-center mb-20" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 relative inline-block section-title">Pengalaman
-                    Kerja</h2>
-                <p class="text-gray-500 mt-6 max-w-xl mx-auto">Jejak profesional saya di berbagai instansi dan
-                    perusahaan.</p>
+    <!-- RESUME SECTION -->
+    <section id="resume" class="py-20 px-6 md:px-12 bg-[#f5f8fd] relative border-b border-gray-100 resume">
+        <div class="container mx-auto max-w-5xl">
+            <div class="mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-4 relative inline-block section-title text-[#172554]">Resume</h2>
+                <p class="text-gray-500 mt-6 max-w-2xl leading-relaxed">Berikut adalah rincian latar belakang pendidikan, sertifikasi kompetensi, serta rekam jejak profesional saya.</p>
             </div>
 
-            <div class="max-w-4xl mx-auto space-y-12" data-aos="fade-up">
-                <!-- Data loaded dynamically from Supabase via app.js -->
-                <div class="text-center py-20 text-gray-400">Loading experiences...</div>
+            <!-- Two-Column Timeline Grid -->
+            <div class="grid md:grid-cols-2 gap-10">
+                <!-- Left Column: Education & Certifications -->
+                <div>
+                    <h3 class="resume-title"><i class="fas fa-graduation-cap text-[#149ddd] mr-2"></i> Pendidikan</h3>
+                    
+                    <!-- We keep the educational structure so app.js can populate it -->
+                    <div id="education" class="space-y-6">
+                        <div class="grid grid-cols-1">
+                            <!-- First child: Education container -->
+                            <div class="space-y-6">
+                                <div class="space-y-6">
+                                    <!-- Loaded by app.js -->
+                                    <div class="text-gray-400">Loading education...</div>
+                                </div>
+                            </div>
+                            <!-- Last child: Certifications container -->
+                            <div class="mt-8">
+                                <h3 class="resume-title"><i class="fas fa-certificate text-[#149ddd] mr-2"></i> Sertifikasi</h3>
+                                <div class="glass bg-transparent border-none p-0 shadow-none">
+                                    <!-- Loaded by app.js -->
+                                    <div class="text-gray-400">Loading certifications...</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Professional Experience -->
+                <div>
+                    <h3 class="resume-title"><i class="fas fa-briefcase text-[#149ddd] mr-2"></i> Pengalaman Profesional</h3>
+                    
+                    <!-- We keep the experience container for app.js -->
+                    <div id="experience" class="space-y-6">
+                        <div class="max-w-4xl space-y-6">
+                            <!-- Loaded by app.js -->
+                            <div class="text-gray-400">Loading experiences...</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- SKILLS SECTION -->
-    <section id="skills" class="py-32 px-4 md:px-8 lg:px-16 relative">
-        <div class="container mx-auto">
-            <div class="text-center mb-20" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 relative inline-block section-title">Keahlian</h2>
-                <p class="text-gray-500 mt-6 max-w-xl mx-auto">Kombinasi kemampuan teknis dan interpersonal yang saya
-                    miliki.</p>
+    <section id="skills" class="py-20 px-6 md:px-12 bg-white relative border-b border-gray-100">
+        <div class="container mx-auto max-w-5xl">
+            <div class="mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-4 relative inline-block section-title text-[#172554]">Keahlian</h2>
+                <p class="text-gray-500 mt-6 max-w-2xl leading-relaxed">Kombinasi kemampuan teknis dan interpersonal yang saya miliki untuk menunjang produktivitas kerja.</p>
             </div>
 
             <div class="max-w-4xl mx-auto" data-aos="fade-up">
-                <div class="glass-card p-10 rounded-[2.5rem]">
+                <div class="glass-card p-8 rounded-2xl border border-gray-100 shadow-sm bg-slate-50/50">
                     <!-- Content loaded by app.js -->
                     <div class="text-center py-10 text-gray-400">Loading skills...</div>
                 </div>
@@ -349,37 +416,12 @@
         </div>
     </section>
 
-    <!-- EDUCATION & CERTIFICATION SECTION -->
-    <section id="education" class="py-32 px-4 md:px-8 lg:px-16 relative">
-        <div class="container mx-auto">
-            <div class="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
-                <!-- Pendidikan -->
-                <div data-aos="fade-right">
-                    <h2 class="text-3xl md:text-4xl font-extrabold mb-10 gradient-text">Pendidikan</h2>
-                    <div class="space-y-6">
-                        <!-- Loaded by app.js -->
-                        <div class="text-gray-400">Loading education...</div>
-                    </div>
-                </div>
-
-                <!-- Sertifikasi -->
-                <div data-aos="fade-left">
-                    <h2 class="text-3xl md:text-4xl font-extrabold mb-10 gradient-text">Sertifikasi</h2>
-                    <div class="glass-card p-8 rounded-[2rem]">
-                        <!-- Loaded by app.js -->
-                        <div class="text-gray-400">Loading certifications...</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- ORGANIZATION SECTION -->
-    <section id="organization" class="py-32 px-4 md:px-8 lg:px-16 relative">
-        <div class="container mx-auto">
-            <div class="text-center mb-20" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 relative inline-block section-title">Organisasi</h2>
-                <p class="text-gray-500 mt-6 max-w-xl mx-auto">Kontribusi saya dalam kegiatan berorganisasi.</p>
+    <section id="organization" class="py-20 px-6 md:px-12 bg-white relative border-b border-gray-100">
+        <div class="container mx-auto max-w-5xl">
+            <div class="mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-4 relative inline-block section-title text-[#172554]">Organisasi</h2>
+                <p class="text-gray-500 mt-6 max-w-2xl leading-relaxed">Kontribusi aktif dan peran kepemimpinan saya dalam berbagai organisasi akademik dan profesional.</p>
             </div>
 
             <div class="max-w-4xl mx-auto" data-aos="fade-up">
@@ -390,15 +432,14 @@
     </section>
 
     <!-- PROJECTS SECTION -->
-    <section id="projects" class="py-32 px-4 md:px-8 lg:px-16 relative">
-        <div class="container mx-auto">
-            <div class="text-center mb-20" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 relative inline-block section-title">Proyek Unggulan
-                </h2>
-                <p class="text-gray-500 mt-6 max-w-xl mx-auto">Beberapa karya dan riset yang telah saya kembangkan.</p>
+    <section id="projects" class="py-20 px-6 md:px-12 bg-[#f5f8fd] relative border-b border-gray-100">
+        <div class="container mx-auto max-w-5xl">
+            <div class="mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-4 relative inline-block section-title text-[#172554]">Proyek Unggulan</h2>
+                <p class="text-gray-500 mt-6 max-w-2xl leading-relaxed">Beberapa karya dan riset teknologi terbaik yang telah saya kembangkan.</p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto" data-aos="fade-up">
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto" data-aos="fade-up">
                 <!-- Loaded by app.js -->
                 <div class="text-center py-20 text-gray-400">Loading projects...</div>
             </div>
@@ -406,82 +447,91 @@
     </section>
 
     <!-- CONTACT SECTION -->
-    <section id="contact" class="py-32 px-4 md:px-8 lg:px-16 relative">
-        <div class="container mx-auto">
-            <div class="text-center mb-20" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 relative inline-block section-title">Mari
-                    Berkolaborasi</h2>
-                <p class="text-gray-500 mt-6 max-w-xl mx-auto">Terbuka untuk peluang baru dan diskusi teknologi.</p>
+    <section id="contact" class="py-20 px-6 md:px-12 bg-white relative">
+        <div class="container mx-auto max-w-5xl">
+            <div class="mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-4 relative inline-block section-title text-[#172554]">Kontak</h2>
+                <p class="text-gray-500 mt-6 max-w-2xl leading-relaxed">Hubungi saya untuk berdiskusi tentang kolaborasi, proyek baru, atau sekadar bertukar wawasan seputar teknologi.</p>
             </div>
 
-            <div class="glass-card max-w-5xl mx-auto p-10 md:p-16 rounded-[3rem]" data-aos="zoom-in">
-                <div class="grid lg:grid-cols-2 gap-16">
-                    <div>
-                        <h3 class="text-3xl font-bold text-gray-900 mb-8">Kontak Saya</h3>
-                        <div class="space-y-6">
-                            <a href="mailto:joshua.setiawan123@gmail.com"
-                                class="flex items-center gap-6 p-6 rounded-3xl hover:bg-primary/5 transition-all group">
-                                <div
-                                    class="w-14 h-14 bg-primary/10 flex items-center justify-center rounded-2xl text-primary group-hover:scale-110 transition-transform">
-                                    <i class="fas fa-envelope text-2xl"></i>
-                                </div>
-                                <div>
-                                    <div class="font-bold text-gray-900 mb-1">Email</div>
-                                    <div class="text-primary font-medium">joshua.setiawan123@gmail.com</div>
-                                </div>
-                            </a>
-                            <a href="https://wa.me/6289655195863"
-                                class="flex items-center gap-6 p-6 rounded-3xl hover:bg-green-500/5 transition-all group">
-                                <div
-                                    class="w-14 h-14 bg-green-500/10 flex items-center justify-center rounded-2xl text-green-600 group-hover:scale-110 transition-transform">
-                                    <i class="fab fa-whatsapp text-2xl"></i>
-                                </div>
-                                <div>
-                                    <div class="font-bold text-gray-900 mb-1">WhatsApp</div>
-                                    <div class="text-green-600 font-medium">+62 89655195863</div>
-                                </div>
-                            </a>
-                            <a href="https://linkedin.com/in/joshuabanjarnahor"
-                                class="flex items-center gap-6 p-6 rounded-3xl hover:bg-blue-600/5 transition-all group">
-                                <div
-                                    class="w-14 h-14 bg-blue-600/10 flex items-center justify-center rounded-2xl text-blue-600 group-hover:scale-110 transition-transform">
-                                    <i class="fab fa-linkedin text-2xl"></i>
-                                </div>
-                                <div>
-                                    <div class="font-bold text-gray-900 mb-1">LinkedIn</div>
-                                    <div class="text-blue-600 font-medium">linkedin.com/in/joshuabanjarnahor</div>
-                                </div>
-                            </a>
+            <div class="max-w-5xl mx-auto p-6 bg-white rounded-xl shadow-md border border-gray-100" data-aos="zoom-in">
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <!-- Left: Contact Details Column (1/3 width on large screens) -->
+                    <div class="lg:col-span-1 space-y-6">
+                        <div class="flex items-start gap-4 p-4 hover:bg-slate-50 rounded-xl transition-all duration-300 group">
+                            <div class="w-12 h-12 bg-[#eaf4ff] text-[#149ddd] group-hover:bg-[#149ddd] group-hover:text-white flex items-center justify-center rounded-full text-xl transition-all duration-300 shrink-0">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 text-base">Lokasi:</h4>
+                                <p class="text-gray-600 text-sm mt-1">Jakarta, Indonesia</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 hover:bg-slate-50 rounded-xl transition-all duration-300 group">
+                            <div class="w-12 h-12 bg-[#eaf4ff] text-[#149ddd] group-hover:bg-[#149ddd] group-hover:text-white flex items-center justify-center rounded-full text-xl transition-all duration-300 shrink-0">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 text-base">Email:</h4>
+                                <a href="mailto:joshua.setiawan123@gmail.com" id="contact-email" class="text-gray-600 hover:text-[#149ddd] text-sm mt-1 block break-all">joshua.setiawan123@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 hover:bg-slate-50 rounded-xl transition-all duration-300 group">
+                            <div class="w-12 h-12 bg-[#eaf4ff] text-[#149ddd] group-hover:bg-[#149ddd] group-hover:text-white flex items-center justify-center rounded-full text-xl transition-all duration-300 shrink-0">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 text-base">WhatsApp:</h4>
+                                <a href="https://wa.me/6289655195863" id="contact-whatsapp" class="text-gray-600 hover:text-[#149ddd] text-sm mt-1 block">+62 896 5519 5863</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 hover:bg-slate-50 rounded-xl transition-all duration-300 group">
+                            <div class="w-12 h-12 bg-[#eaf4ff] text-[#149ddd] group-hover:bg-[#149ddd] group-hover:text-white flex items-center justify-center rounded-full text-xl transition-all duration-300 shrink-0">
+                                <i class="fab fa-linkedin-in"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 text-base">LinkedIn:</h4>
+                                <a href="https://linkedin.com/in/joshuabanjarnahor" id="contact-linkedin" class="text-gray-600 hover:text-[#149ddd] text-sm mt-1 block break-all">linkedin.com/in/joshuabanjarnahor</a>
+                            </div>
                         </div>
                     </div>
 
-                    <div>
-                        <h3 class="text-3xl font-bold text-gray-900 mb-8">Pesan Langsung</h3>
-                        <form class="space-y-4">
-                            <input type="text" placeholder="Nama Lengkap"
-                                class="w-full p-5 bg-white/50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all">
-                            <input type="email" placeholder="Email"
-                                class="w-full p-5 bg-white/50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all">
-                            <textarea rows="4" placeholder="Pesan Anda..."
-                                class="w-full p-5 bg-white/50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"></textarea>
+                    <!-- Right: Form Column (2/3 width on large screens) -->
+                    <div class="lg:col-span-2">
+                        <form class="space-y-4 p-2">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <input type="text" placeholder="Nama Lengkap" required
+                                    class="w-full p-4 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#149ddd]/20 focus:border-[#149ddd] transition-all text-sm">
+                                <input type="email" placeholder="Email" required
+                                    class="w-full p-4 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#149ddd]/20 focus:border-[#149ddd] transition-all text-sm">
+                            </div>
+                            <input type="text" placeholder="Subjek" required
+                                class="w-full p-4 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#149ddd]/20 focus:border-[#149ddd] transition-all text-sm">
+                            <textarea rows="5" placeholder="Pesan Anda..." required
+                                class="w-full p-4 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#149ddd]/20 focus:border-[#149ddd] transition-all resize-none text-sm"></textarea>
                             <button type="submit"
-                                class="w-full py-5 bg-primary text-white font-bold rounded-2xl hover:shadow-lg hover:-translate-y-1 transition-all">
+                                class="px-8 py-4 bg-[#149ddd] text-white font-semibold rounded-md hover:bg-[#0563bb] hover:shadow-lg transition-all duration-300">
                                 <i class="fas fa-paper-plane mr-2"></i> Kirim Pesan
                             </button>
                         </form>
                     </div>
                 </div>
 
-                <div class="mt-20 pt-10 border-t border-gray-100 text-center text-gray-400">
-                    <p>© <span id="year">2024</span> Joshua Setiawan Banjarnahor. Designed with ❤️ for excellence.</p>
+                <div class="mt-16 pt-8 border-t border-gray-100 text-center text-gray-400 text-xs">
+                    <p>© <span id="year">2026</span> Joshua Setiawan Banjarnahor. All rights reserved.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    </main> <!-- End Main Content Wrapper -->
+
     <!-- BACK TO TOP -->
-    <button onclick="window.scrollTo({top: 0})"
-        class="fixed bottom-10 right-10 w-16 h-16 glass rounded-full text-2xl flex items-center justify-center z-50 text-primary shadow-2xl hover:scale-110 transition-all opacity-0 invisible translate-y-10"
+    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+        class="fixed bottom-6 right-6 w-11 h-11 bg-[#149ddd] hover:bg-[#0563bb] rounded-full text-lg flex items-center justify-center z-50 text-white shadow-lg hover:scale-110 transition-all opacity-0 invisible"
         id="backToTop">
         <i class="fas fa-arrow-up"></i>
     </button>
@@ -497,34 +547,76 @@
         // Set current year
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Anchor links with smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                } else {
-                    const target = document.querySelector(targetId);
-                    if (target) {
-                        const offset = 100;
-                        const bodyRect = document.body.getBoundingClientRect().top;
-                        const elementRect = target.getBoundingClientRect().top;
-                        const elementPosition = elementRect - bodyRect;
-                        const offsetPosition = elementPosition - offset;
+        // Mobile Nav Toggle
+        const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+        const header = document.getElementById('header');
+        if (mobileNavToggle && header) {
+            mobileNavToggle.addEventListener('click', () => {
+                header.classList.toggle('-translate-x-[300px]');
+                header.classList.toggle('translate-x-0');
+                const icon = mobileNavToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-xmark');
+                }
+            });
+        }
 
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: 'smooth'
-                        });
+        // Close sidebar on link click on mobile
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 768) {
+                    header.classList.add('-translate-x-[300px]');
+                    header.classList.remove('translate-x-0');
+                    const icon = mobileNavToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.add('fa-bars');
+                        icon.classList.remove('fa-xmark');
                     }
                 }
             });
         });
 
-        // Scroll Spy for Navigation with throttling
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.nav-floating a');
+        // Typing Effect
+        const typedElement = document.getElementById('typed');
+        if (typedElement) {
+            const words = ["AI Specialist", "Cybersecurity Specialist", "IT Specialist", "Tech Innovator"];
+            let wordIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            
+            function type() {
+                const currentWord = words[wordIndex];
+                if (isDeleting) {
+                    typedElement.textContent = currentWord.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    typedElement.textContent = currentWord.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+                
+                let typeSpeed = 100;
+                if (isDeleting) {
+                    typeSpeed /= 2; // delete faster
+                }
+                
+                if (!isDeleting && charIndex === currentWord.length) {
+                    typeSpeed = 1500; // pause at full word
+                    isDeleting = true;
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                    typeSpeed = 500; // pause before next word
+                }
+                
+                setTimeout(type, typeSpeed);
+            }
+            setTimeout(type, 500);
+        }
+
+        // Scroll Spy for Navigation Links
+        const sections = document.querySelectorAll('section[id], #hero');
+        const sidebarLinks = document.querySelectorAll('.sidebar-link');
         let isScrolling = false;
 
         window.addEventListener('scroll', () => {
@@ -534,29 +626,29 @@
                     sections.forEach(section => {
                         const sectionTop = section.offsetTop;
                         const sectionHeight = section.clientHeight;
-                        if (pageYOffset >= sectionTop - 150) {
+                        if (window.pageYOffset >= sectionTop - 150) {
                             current = section.getAttribute('id');
                         }
                     });
 
-                    navLinks.forEach(link => {
-                        link.classList.remove('active-nav');
-                        if (link.getAttribute('href') === `#${current}`) {
-                            link.classList.add('active-nav');
-                        }
-                        if (current === '' && link.getAttribute('href') === '#') {
-                            link.classList.add('active-nav');
+                    sidebarLinks.forEach(link => {
+                        link.classList.remove('active');
+                        const href = link.getAttribute('href');
+                        if (href === '#' && (current === 'hero' || current === '')) {
+                            link.classList.add('active');
+                        } else if (href === `#${current}`) {
+                            link.classList.add('active');
                         }
                     });
 
                     // Back to top visibility
                     const btn = document.getElementById('backToTop');
-                    if (window.scrollY > 500) {
-                        btn.classList.remove('opacity-0', 'invisible', 'translate-y-10');
-                        btn.classList.add('opacity-100', 'visible', 'translate-y-0');
+                    if (window.scrollY > 300) {
+                        btn.classList.remove('opacity-0', 'invisible');
+                        btn.classList.add('opacity-100', 'visible');
                     } else {
-                        btn.classList.add('opacity-0', 'invisible', 'translate-y-10');
-                        btn.classList.remove('opacity-100', 'visible', 'translate-y-0');
+                        btn.classList.add('opacity-0', 'invisible');
+                        btn.classList.remove('opacity-100', 'visible');
                     }
 
                     isScrolling = false;
