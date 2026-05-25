@@ -80,7 +80,7 @@ async function renderProfile() {
 
     // Update Hero
     const heroName = document.querySelector('h1 span.text-gray-900');
-    if (heroName) heroName.textContent = profile.nama || '[NAMA ANDA]';
+    if (heroName) heroName.textContent = profile.nama || 'Jojo';
 
     // Update title
     document.title = `Portfolio - ${profile.nama} | IT Specialist`;
