@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "name": "portfolio-cv",
+  "name": "jvs-portfolio",
   "cleanUrls": true,
   "framework": null,
   "buildCommand": "npm run build:css",
   "outputDirectory": ".",
   "env": {
-    "SUPABASE_URL": "https://lyigktppyznswnynsjvl.supabase.co",
-    "SUPABASE_KEY": "sb_publishable_A-A8wsurGSU34Bs8SArsmg_Yl2KjExD"
+    "VITE_SUPABASE_URL": "https://lyigktppyznswnynsjvl.supabase.co",
+    "VITE_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx5aWdrdHBweXpuc3dueW5zanZsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0NTIyNjMsImV4cCI6MjA5MzAyODI2M30.2iO6QjfdkWG-CJyXCB750TNIndTWWlZmE7SDA0ZcYoI"
   }
 }
