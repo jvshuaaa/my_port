@@ -177,10 +177,18 @@ async function renderProfile() {
             aboutLinkedinLink.textContent = linkedinUrl.replace('https://', '');
         }
 
-        // Update foto if exists
-        if (profileImg && profile.foto_url) {
-            profileImg.src = profile.foto_url;
-            profileImg.alt = `Foto ${nameValue}`;
+        // Update foto if exists (clean any accidental whitespaces/newlines)
+        if (profile.foto_url) {
+            const cleanFotoUrl = profile.foto_url.replace(/\s+/g, '');
+            if (profileImg) {
+                profileImg.src = cleanFotoUrl;
+                profileImg.alt = `Foto ${nameValue}`;
+            }
+            const sidebarImg = document.querySelector('#header img');
+            if (sidebarImg) {
+                sidebarImg.src = cleanFotoUrl;
+                sidebarImg.alt = `Foto ${nameValue}`;
+            }
         }
 
         // Update CV download link
