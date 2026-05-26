@@ -1,13 +1,7 @@
 // supabase.js
 import { createClient } from 'https://esm.sh/@supabase/supabase-js'
 
-// Support env variables untuk Vercel, fallback ke hardcoded untuk local
-const SUPABASE_URL = import.meta.env?.VITE_SUPABASE_URL || 
-                     window.ENV?.SUPABASE_URL || 
-                     'https://lyigktppyznswnynsjvl.supabase.co'
-
-const SUPABASE_KEY = import.meta.env?.VITE_SUPABASE_ANON_KEY || 
-                     window.ENV?.SUPABASE_ANON_KEY || 
-                     'sb_publishable_A-A8wsurGSU34Bs8SArsmg_Yl2KjExD'
+const SUPABASE_URL = 'https://lyigktppyznswnynsjvl.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx5aWdrdHBweXpuc3dueW5zanZsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0NTIyNjMsImV4cCI6MjA5MzAyODI2M30.2iO6QjfdkWG-CJyXCB750TNIndTWWlZmE7SDA0ZcYoI';
 
 export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)

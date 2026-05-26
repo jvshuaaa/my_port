@@ -3,6 +3,8 @@
   "name": "portfolio-cv",
   "cleanUrls": true,
   "framework": null,
+  "buildCommand": "npm run build:css",
+  "outputDirectory": ".",
   "env": {
     "SUPABASE_URL": "https://lyigktppyznswnynsjvl.supabase.co",
     "SUPABASE_KEY": "sb_publishable_A-A8wsurGSU34Bs8SArsmg_Yl2KjExD"

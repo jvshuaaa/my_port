@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npx serve .",
+    "build:css": "node build-css.js",
+    "dev": "node build-css.js && npx serve .",
+    "build": "node build-css.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,5 +15,10 @@
   "type": "commonjs",
   "dependencies": {
     "@supabase/supabase-js": "^2.105.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.15",
+    "tailwindcss": "^4.3.0"
   }
 }

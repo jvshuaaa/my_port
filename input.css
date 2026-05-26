@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles */
+* {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: #ffffff;
+    color: #272829;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Outfit', sans-serif;
+    color: #172554;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c7c7c7;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #149ddd;
+}
+
+/* Section Title */
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: #149ddd;
+}
+
+/* Sidebar Link Active State */
+.sidebar-link.active, .sidebar-link:hover {
+    color: #fff !important;
+}
+
+.sidebar-link.active i, .sidebar-link:hover i {
+    color: #149ddd !important;
+}
+
+/* Resume Timeline Styling */
+.resume-title {
+    font-size: 26px;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #050d18;
+}
+
+.resume-item {
+    padding: 0 0 20px 20px;
+    margin-top: -2px;
+    border-left: 2px solid #1f5297;
+    position: relative;
+}
+
+.resume-item::before {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50px;
+    left: -9px;
+    top: 0;
+    background: #fff;
+    border: 2px solid #1f5297;
+    transition: all 0.3s ease-in-out;
+}
+
+.resume-item:hover::before {
+    background: #149ddd;
+}
+
+.resume-item h4 {
+    line-height: 18px;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-family: 'Outfit', sans-serif;
+    color: #050d18;
+    margin-bottom: 10px;
+}
+
+.resume-item h5 {
+    font-size: 13px;
+    background: #f2f9f8;
+    padding: 5px 15px;
+    display: inline-block;
+    font-weight: 600;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    color: #1f5297;
+}
+
+/* Dynamic Tags & Cards */
+.skill-tag {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+.skill-tag:hover {
+    border-color: #149ddd;
+    background-color: #f0f9ff;
+    transform: translateY(-2px);
+}
+
+.project-card {
+    background: #fff;
+    box-shadow: 0px 0 30px rgba(4, 11, 20, 0.08);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 30px rgba(4, 11, 20, 0.15);
+}

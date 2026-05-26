@@ -1,169 +1,198 @@
 // api.js - Functions to fetch data from Supabase
 import { supabase } from './supabase.js';
 
+// Helper to show toast notifications
+function showApiError(context, error) {
+    const message = typeof error === 'string' ? error : error?.message || 'Unknown error';
+    console.error(`[API Error] ${context}:`, message);
+    if (window.showErrorToast) {
+        window.showErrorToast(`Gagal memuat ${context}. Coba lagi nanti.`);
+    }
+}
+
 // =============================================
 // PROFILE API
 // =============================================
 export async function getProfile() {
-    const { data, error } = await supabase
-        .from('profile')
-        .select('*');
-    
-    if (error) {
-        console.error('Error fetching profile:', error);
+    try {
+        const { data, error } = await supabase
+            .from('profile')
+            .select('*');
+
+        if (error) throw error;
+        return data && data.length > 0 ? data[0] : null;
+    } catch (error) {
+        showApiError('profil', error);
         return null;
     }
-    return data && data.length > 0 ? data[0] : null;
 }
 
 export async function updateProfile(profileData) {
-    const { data, error } = await supabase
-        .from('profile')
-        .update(profileData)
-        .eq('id', profileData.id)
-        .select();
-    
-    if (error) {
-        console.error('Error updating profile:', error);
+    try {
+        const { data, error } = await supabase
+            .from('profile')
+            .update(profileData)
+            .eq('id', profileData.id)
+            .select();
+
+        if (error) throw error;
+        return data;
+    } catch (error) {
+        showApiError('profil', error);
         return null;
     }
-    return data;
 }
 
 // =============================================
 // EXPERIENCE API
 // =============================================
 export async function getExperience() {
-    const { data, error } = await supabase
-        .from('experience')
-        .select('*')
-        .order('urutan', { ascending: true });
-    
-    if (error) {
-        console.error('Error fetching experience:', error);
+    try {
+        const { data, error } = await supabase
+            .from('experience')
+            .select('*')
+            .order('urutan', { ascending: true });
+
+        if (error) throw error;
+        return data || [];
+    } catch (error) {
+        showApiError('pengalaman', error);
         return [];
     }
-    return data;
 }
 
 // =============================================
 // EDUCATION API
 // =============================================
 export async function getEducation() {
-    const { data, error } = await supabase
-        .from('education')
-        .select('*')
-        .order('urutan', { ascending: true });
-    
-    if (error) {
-        console.error('Error fetching education:', error);
+    try {
+        const { data, error } = await supabase
+            .from('education')
+            .select('*')
+            .order('urutan', { ascending: true });
+
+        if (error) throw error;
+        return data || [];
+    } catch (error) {
+        showApiError('pendidikan', error);
         return [];
     }
-    return data;
 }
 
 // =============================================
 // CERTIFICATIONS API
 // =============================================
 export async function getCertifications() {
-    const { data, error } = await supabase
-        .from('certifications')
-        .select('*')
-        .order('tahun', { ascending: false });
-    
-    if (error) {
-        console.error('Error fetching certifications:', error);
+    try {
+        const { data, error } = await supabase
+            .from('certifications')
+            .select('*')
+            .order('tahun', { ascending: false });
+
+        if (error) throw error;
+        return data || [];
+    } catch (error) {
+        showApiError('sertifikasi', error);
         return [];
     }
-    return data;
 }
 
 // =============================================
 // SKILLS API
 // =============================================
 export async function getSkills() {
-    const { data, error } = await supabase
-        .from('skills')
-        .select('*')
-        .order('urutan', { ascending: true });
-    
-    if (error) {
-        console.error('Error fetching skills:', error);
+    try {
+        const { data, error } = await supabase
+            .from('skills')
+            .select('*')
+            .order('urutan', { ascending: true });
+
+        if (error) throw error;
+        return data || [];
+    } catch (error) {
+        showApiError('keahlian', error);
         return [];
     }
-    return data;
 }
 
 export async function getSkillsByCategory(kategori) {
-    const { data, error } = await supabase
-        .from('skills')
-        .select('*')
-        .eq('kategori', kategori)
-        .order('urutan', { ascending: true });
-    
-    if (error) {
-        console.error('Error fetching skills:', error);
+    try {
+        const { data, error } = await supabase
+            .from('skills')
+            .select('*')
+            .eq('kategori', kategori)
+            .order('urutan', { ascending: true });
+
+        if (error) throw error;
+        return data || [];
+    } catch (error) {
+        showApiError('keahlian', error);
         return [];
     }
-    return data;
 }
 
 // =============================================
 // PROJECTS API
 // =============================================
 export async function getProjects() {
-    const { data, error } = await supabase
-        .from('projects')
-        .select('*')
-        .order('urutan', { ascending: true });
-    
-    if (error) {
-        console.error('Error fetching projects:', error);
+    try {
+        const { data, error } = await supabase
+            .from('projects')
+            .select('*')
+            .order('urutan', { ascending: true });
+
+        if (error) throw error;
+        return data || [];
+    } catch (error) {
+        showApiError('proyek', error);
         return [];
     }
-    return data;
 }
 
 // =============================================
 // ORGANIZATION API
 // =============================================
 export async function getOrganization() {
-    const { data, error } = await supabase
-        .from('organization')
-        .select('*')
-        .order('urutan', { ascending: true });
-    
-    if (error) {
-        console.error('Error fetching organization:', error);
+    try {
+        const { data, error } = await supabase
+            .from('organization')
+            .select('*')
+            .order('urutan', { ascending: true });
+
+        if (error) throw error;
+        return data || [];
+    } catch (error) {
+        showApiError('organisasi', error);
         return [];
     }
-    return data;
 }
 
 // =============================================
 // UPLOAD FILE (Foto/Project Images)
 // =============================================
 export async function uploadFile(file, bucket, path) {
-    const { data, error } = await supabase
-        .storage
-        .from(bucket)
-        .upload(path, file, {
-            cacheControl: '3600',
-            upsert: true
-        });
-    
-    if (error) {
-        console.error('Error uploading file:', error);
+    try {
+        const { data, error } = await supabase
+            .storage
+            .from(bucket)
+            .upload(path, file, {
+                cacheControl: '3600',
+                upsert: true
+            });
+
+        if (error) throw error;
+
+        // Get public URL
+        const { data: { publicUrl } } = supabase
+            .storage
+            .from(bucket)
+            .getPublicUrl(data.path);
+
+        return publicUrl;
+    } catch (error) {
+        showApiError('upload file', error);
         return null;
     }
-    
-    // Get public URL
-    const { data: { publicUrl } } = supabase
-        .storage
-        .from(bucket)
-        .getPublicUrl(data.path);
-    
-    return publicUrl;
 }
 
 // =============================================
@@ -172,7 +201,7 @@ export async function uploadFile(file, bucket, path) {
 export function subscribeToTable(tableName, callback) {
     return supabase
         .channel(`${tableName}_changes`)
-        .on('postgres_changes', 
+        .on('postgres_changes',
             { event: '*', schema: 'public', table: tableName },
             callback
         )

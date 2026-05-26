@@ -1,0 +1,134 @@
+#!/usr/bin/env node
+const fs = require('fs');
+const path = require('path');
+
+// Simple Tailwind CSS build without CLI
+// This will just concatenate the CSS for now
+const inputCss = `@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Resume Timeline Styling */
+.resume-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #149ddd;
+    color: #172554;
+}
+
+.resume-item {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.resume-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 16px;
+    height: 16px;
+    background: #149ddd;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 2px #149ddd;
+}
+
+.resume-item:hover::before {
+    box-shadow: 0 0 0 3px #149ddd;
+}
+
+.resume-item h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #172554;
+    margin-bottom: 0.25rem;
+}
+
+.resume-item h5 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #149ddd;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+    margin-top: 0.25rem;
+}
+
+/* Dynamic Tags & Cards */
+.skill-tag {
+    display: inline-block;
+    background: #eaf4ff;
+    color: #149ddd;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    margin: 0.25rem;
+}
+
+.skill-tag:hover {
+    background: #149ddd;
+    color: #fff;
+}
+
+.project-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+}
+
+.project-card:hover {
+    box-shadow: 0 10px 30px rgba(20, 157, 221, 0.2);
+    transform: translateY(-5px);
+}
+
+/* Section Title */
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    width: 4rem;
+    height: 0.3rem;
+    background: linear-gradient(to right, #149ddd, rgba(20, 157, 221, 0.3));
+    border-radius: 0.25rem;
+}
+
+/* Sidebar Link Active State */
+.sidebar-link.active, .sidebar-link:hover {
+    color: #fff;
+}
+
+.sidebar-link.active i, .sidebar-link:hover i {
+    color: #149ddd;
+}`;
+
+// Create dist directory if it doesn't exist
+const distDir = path.join(__dirname, 'dist');
+if (!fs.existsSync(distDir)) {
+    fs.mkdirSync(distDir, { recursive: true });
+}
+
+// Write the CSS file
+fs.writeFileSync(path.join(distDir, 'output.css'), inputCss);
+console.log('✓ CSS built successfully: dist/output.css');
