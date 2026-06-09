@@ -1,4 +1,4 @@
-// app.js - Dynamic content loader from Supabase
+// app.js - Dynamic content loader from Google Sheets
 import {
     getProfile,
     getExperience,

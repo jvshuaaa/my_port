@@ -1,1 +1,12 @@
 .vercel
+node_modules/
+dist/
+
+# Jangan commit file environment/config dengan kredensial
+.env
+.env.local
+.env.production
+
+# File konfigurasi lokal yang mungkin berisi API key
+config.local.js
+secrets.js
