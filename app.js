@@ -24,7 +24,7 @@ async function withTimeout(promise, fallbackMessage = 'Request timeout') {
     ]);
 }
 
-// Proyek unggulan (ditampilkan jika belum ada di Supabase)
+// Proyek fallback (ditampilkan jika Google Sheets belum ada datanya)
 const FEATURED_PROJECTS = [
     {
         judul: 'KLIP',
@@ -36,8 +36,8 @@ const FEATURED_PROJECTS = [
     },
     {
         judul: 'Portfolio Website',
-        deskripsi: 'Website portfolio pribadi dengan integrasi database Supabase untuk menampilkan profil, pengalaman, dan proyek secara dinamis.',
-        teknologi: ['HTML', 'Tailwind CSS', 'JavaScript', 'Supabase'],
+        deskripsi: 'Website portfolio pribadi dengan Google Sheets sebagai database untuk menampilkan profil, pengalaman, dan proyek secara dinamis.',
+        teknologi: ['HTML', 'Tailwind CSS', 'JavaScript', 'Google Sheets'],
         link_github: 'https://github.com/jvshuaaa/my_port',
         link_demo: 'https://github.com/jvshuaaa/my_port',
         urutan: 2
@@ -88,10 +88,10 @@ async function renderProfile() {
     try {
         const profile = await withTimeout(getProfile(), 'Timeout saat memuat profil');
 
-        console.log('Profile data from DB:', profile);
+        console.log('Profile data:', profile);
 
         if (!profile) {
-            console.log('❌ No profile data from Supabase');
+            console.log('❌ Tidak ada data profil');
             showErrorToast('Gagal memuat data profil dari database', 6000);
             return;
         }
@@ -212,7 +212,7 @@ async function renderExperience() {
     try {
         const experiences = await withTimeout(getExperience(), 'Timeout saat memuat pengalaman');
         if (!experiences || experiences.length === 0) {
-            console.log('No experience data from Supabase');
+            console.log('Tidak ada data pengalaman');
             return;
         }
 
@@ -621,9 +621,8 @@ async function init() {
         console.log('Connection status:', connection);
 
         if (connection.status === 'connected') {
-            console.log('📡 Connected to Supabase! Loading data...');
+            console.log('📡 Terhubung ke Google Sheets! Memuat data...');
 
-            // Load all data
             await Promise.all([
                 renderProfile(),
                 renderExperience(),
@@ -634,16 +633,15 @@ async function init() {
                 renderProjects()
             ]);
 
-            console.log('✅ All data loaded from Supabase!');
+            console.log('✅ Semua data berhasil dimuat dari Google Sheets!');
             showSuccessToast('Data berhasil dimuat!', 3000);
 
-            // Refresh AOS to detect new elements
             if (window.AOS) {
                 AOS.refresh();
                 console.log('✨ AOS Refreshed');
             }
         } else {
-            console.warn('⚠️ Could not connect to Supabase, using default data');
+            console.warn('⚠️ Gagal terhubung ke Google Sheets');
             console.log('Error:', connection.message);
             showErrorToast('Gagal terhubung ke database. Menampilkan data default.', 8000);
         }
