@@ -1,7 +1,7 @@
 // api.js - Fetch data dari Google Sheets via Apps Script proxy
 // Ganti PROXY_URL setelah deploy Apps Script (lihat google-apps-script/Code.gs)
 
-const PROXY_URL = 'https://script.google.com/macros/s/AKfycbxJ7WeZSA41rQJ9Mo0i3k02R5ddXK8f-AYaVQdZQ1bsVPFoqsAiBeV_97aEmc9iIMJ6pA/exec';
+const PROXY_URL = 'https://script.google.com/macros/s/AKfycbzsH3SzQlYTrJU3XB61bV6BbTo-SzHM7LEy5JXfbC28U0Wd2thGkMDChrYLEDV56m1_/exec';
 
 // URL yang sama dipakai untuk POST (kirim pesan kontak)
 export const CONTACT_PROXY_URL = PROXY_URL;
