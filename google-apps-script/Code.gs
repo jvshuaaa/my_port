@@ -64,6 +64,40 @@ function readSheet(sheetName) {
     });
 }
 
+// =============================================
+// POST — Simpan pesan kontak dari form
+// =============================================
+function doPost(e) {
+  try {
+    var body = JSON.parse(e.postData.contents);
+    var nama     = body.nama     || '';
+    var email    = body.email    || '';
+    var subjek   = body.subjek   || '';
+    var pesan    = body.pesan    || '';
+    var waktu    = Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyy-MM-dd HH:mm:ss');
+
+    if (!nama || !email || !pesan) {
+      return respond({ success: false, error: 'Nama, email, dan pesan wajib diisi.' });
+    }
+
+    var ss    = SpreadsheetApp.openById(SPREADSHEET_ID);
+    var sheet = ss.getSheetByName('messages');
+
+    // Buat tab messages jika belum ada
+    if (!sheet) {
+      sheet = ss.insertSheet('messages');
+      sheet.getRange(1, 1, 1, 5).setValues([['waktu', 'nama', 'email', 'subjek', 'pesan']]);
+      sheet.getRange(1, 1, 1, 5).setFontWeight('bold');
+    }
+
+    sheet.appendRow([waktu, nama, email, subjek, pesan]);
+    return respond({ success: true, message: 'Pesan berhasil dikirim!' });
+
+  } catch (err) {
+    return respond({ success: false, error: err.message });
+  }
+}
+
 function respond(payload) {
   return ContentService
     .createTextOutput(JSON.stringify(payload))

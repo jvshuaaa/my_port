@@ -8,7 +8,8 @@ import {
     getSkillsByCategory,
     getProjects,
     getOrganization,
-    checkConnection
+    checkConnection,
+    CONTACT_PROXY_URL
 } from './api.js';
 
 // Timeout for API calls (10 seconds)
@@ -609,6 +610,9 @@ async function renderProjects() {
 async function init() {
     console.log('🚀 Initializing Portfolio App...');
 
+    // Inisialisasi form kontak (tidak butuh koneksi DB)
+    initContactForm();
+
     // Show loading indicator
     const loadingSections = document.querySelectorAll('[class*="Loading"]');
     loadingSections.forEach(el => {
@@ -649,6 +653,54 @@ async function init() {
         console.error('Initialization error:', error);
         showErrorToast('Gagal memuat halaman. Silakan refresh browser.', 10000);
     }
+}
+
+// =============================================
+// CONTACT FORM SUBMIT
+// =============================================
+function initContactForm() {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const btn = document.getElementById('submit-button');
+        const nama    = document.getElementById('full-name')?.value.trim();
+        const email   = document.getElementById('email')?.value.trim();
+        const subjek  = document.getElementById('subject')?.value.trim();
+        const pesan   = document.getElementById('message')?.value.trim();
+
+        if (!nama || !pesan) {
+            showErrorToast('Nama dan pesan wajib diisi.', 4000);
+            return;
+        }
+
+        // Loading state
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Mengirim...';
+
+        try {
+            const res = await fetch(CONTACT_PROXY_URL, {
+                method: 'POST',
+                body: JSON.stringify({ nama, email, subjek, pesan })
+            });
+
+            const json = await res.json();
+
+            if (json.success) {
+                showSuccessToast('Pesan berhasil dikirim! Saya akan segera menghubungi kamu.', 5000);
+                form.reset();
+            } else {
+                showErrorToast('Gagal mengirim pesan: ' + (json.error || 'Coba lagi.'), 5000);
+            }
+        } catch (err) {
+            showErrorToast('Gagal mengirim pesan. Cek koneksi internet kamu.', 5000);
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i> Kirim Pesan';
+        }
+    });
 }
 
 // Run when DOM is ready

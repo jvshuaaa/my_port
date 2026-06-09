@@ -3,6 +3,9 @@
 
 const PROXY_URL = 'https://script.google.com/macros/s/AKfycbxJ7WeZSA41rQJ9Mo0i3k02R5ddXK8f-AYaVQdZQ1bsVPFoqsAiBeV_97aEmc9iIMJ6pA/exec';
 
+// URL yang sama dipakai untuk POST (kirim pesan kontak)
+export const CONTACT_PROXY_URL = PROXY_URL;
+
 // =============================================
 // CACHE (localStorage, TTL 5 menit)
 // =============================================
